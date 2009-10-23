@@ -83,4 +83,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'kaariok.songs',
+    'kaariok.users',
+    'kaariok.playlists',
 )
