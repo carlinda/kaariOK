@@ -5,6 +5,11 @@ import settings
 from django.contrib import admin
 admin.autodiscover()
 
+# For testing only
+from django.shortcuts import render_to_response
+def test_base(request):
+    return render_to_response('test.html')
+# End testing
 
 urlpatterns = patterns('',
     # Example:
@@ -21,4 +26,6 @@ urlpatterns = patterns('',
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
     	{'document_root': settings.MEDIA_ROOT}),
     
+    # For testing only
+    (r'^basetest/', test_base),
 )
