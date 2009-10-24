@@ -6,6 +6,9 @@ import settings
 from django.contrib import admin
 admin.autodiscover()
 
+# Project view imports
+from kaariok.users.views import login_user
+
 # For testing only
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -25,6 +28,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
+    (r'^accounts/login/(?P<user_id>.*)/$', login_user),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',

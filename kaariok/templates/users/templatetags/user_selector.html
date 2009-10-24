@@ -4,9 +4,12 @@
 			$("#user_selector_tag_selector").change( function(){
 				//Login user here. With an indicator thar the user is changing.
 				$.getJSON(
-					"/accounts/login/"+$("#user_selector_tag_selector").val(),
+					"/accounts/login/"+$("#user_selector_tag_selector").val()+"/",
 					function(data){
-						$("#user_selector_tag_state_indicator").html("User Changed");
+						if(data['success'])
+							$("#user_selector_tag_state_indicator").html("User Changed");
+						else
+							$("#user_selector_tag_state_indicator").html("User Change Failed");
 					}
 				);
 			}
