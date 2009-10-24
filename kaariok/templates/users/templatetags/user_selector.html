@@ -2,10 +2,19 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$("#user_selector_tag_selector").change( function(){
-				//Login user here. Add an indicator thar the user is changing.
+				//Login user here. With an indicator thar the user is changing.
+				$.getJSON(
+					"/accounts/login/"+$("#user_selector_tag_selector").val(),
+					function(data){
+						$("#user_selector_tag_state_indicator").html("User Changed");
+					}
+				);
 			}
 			)
-		});
+		}).ajaxStart( function(){
+			$("#user_selector_tag_state_indicator").html("Switching User");
+		}
+		);
 	</script>
 	<select id="user_selector_tag_selector" size="1">
 		{% for option_user in users%}
@@ -16,5 +25,5 @@
 				{{option_user.username}}
 			</option>
 		{% endfor %}	
-	</select>
+	</select><div id="user_selector_tag_state_indicator"></div>
 </div>
