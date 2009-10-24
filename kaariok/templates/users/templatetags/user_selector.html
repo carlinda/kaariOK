@@ -1,5 +1,11 @@
 <div id=user_selector_tag>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#user_selector_tag_selector").change( function(){
+				//Login user here. Add an indicator thar the user is changing.
+			}
+			)
+		});
 	</script>
 	<select id="user_selector_tag_selector" size="1">
 		{% for option_user in users%}
