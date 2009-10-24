@@ -7,15 +7,17 @@
 					"/accounts/login/"+$("#user_selector_tag_selector").val()+"/",
 					function(data){
 						if(data['success'])
-							$("#user_selector_tag_state_indicator").html("User Changed");
+							$("#user_selector_tag_state_indicator").html(
+									"<img src='/site_media/images/utils/checkmark.png' />");
 						else
-							$("#user_selector_tag_state_indicator").html("User Change Failed");
+							$("#user_selector_tag_state_indicator").html(
+									"<img src='/site_media/images/utils/fail.png' />");
 					}
 				);
 			}
 			)
 		}).ajaxStart( function(){
-			$("#user_selector_tag_state_indicator").html("Switching User");
+			$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'/>");
 		}
 		);
 	</script>

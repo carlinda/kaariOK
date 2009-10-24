@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 
 def login_user(request, user_id):
-    
     user = User.objects.get(id=user_id)
     login_user = authenticate(username=user.username, password=' ')
     success = False
