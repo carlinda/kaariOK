@@ -1,17 +1,63 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>{% block title %}KaariOK{% endblock %}</title>
-	<link type="text/css" href="/css/base.css" rel="stylesheet" media="screen"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+  <head>
+    <link href="/site_media/css/base.css" type="text/css" rel="stylesheet" media="screen,projection" />
 	{% block script %}{% endblock %}
-</head>
-<body>
-<div id="header"></div>
-<div id="sidebar"></div>
-<div id="content">{% block content %}{% endblock %}</div>
-<div id="footer"></div>
-</body>
+
+    <title>{% block title %}KaariOK{% endblock %}</title>
+  </head>
+  <body>
+
+    <div id="layout">
+      
+      <div id="header">
+        
+        <h1 id="logo"><a href="./" title="Company">kaari<span class="light">OK</span><span class="leaf">&nbsp;</span></a></h1> 
+      
+      <div id="nav" class="box">
+         <ul>
+            <li><a href="/">Home<br /><span>Main page</span></a></li>
+            <li><a href="/">Who<br /><span>Our team</span></a></li>
+            <li><a href="/">What<br /><span>Our services</span></a></li>
+            <li><a href="/">Portfolio<br /><span>Our woks</span></a></li>
+            <li><a href="/">Prices<br /><span>How much it costs</span></a></li>
+            <li><a href="/">Contact<br /><span>Write us!</span></a></li>
+         </ul>
+      </div> 
+        
+      <div id="container" class="box">
+      
+        <div id="obsah" class="content box">
+          <div class="in">
+          
+            {% block content %}{% endblock %}
+            
+          </div>
+        </div>
+
+        <div id="panel-left" class="box panel">
+          <div class="in">
+          [Start Sidebar]
+          <p>
+            <span>03/07/2008</span><br />
+            Duis aute irure dolor in repreh in voluptate velit esse cill dolore 
+            eu.
+          </p>
+          
+          <p>
+            <span>03/07/2008</span><br />
+            Duis aute irure dolor in repreh in voluptate velit esse cill dolore 
+            eu.
+          </p>
+		  [End Sidebar]
+          </div>
+        </div>
+      
+      </div>
+        
+        <div id="footer">
+          <span class="f-left">&copy; 2008 <a href="/">Your name</a></span> <span class="f-right">Design: <a href="http://www.davidkohout.cz">David Kohout</a> | Our tip <a href="http://www.efektim.com" title="Efektim - Real Estate Consulting">Efektim Real Estate</a></span>
+        </div>
+    </div></div>
+  </body>
 </html>
