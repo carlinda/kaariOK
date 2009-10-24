@@ -1,12 +1,14 @@
 <div id=user_selector_tag>
-		<select id="user_selector_tag_selector" size="1">
-			{% for option_user in users%}
-				<option value="{{option_user.id}}"  
-					{% ifequal selected_user option_user.id  %} 
-						selected
-					{% endifequal %}>
-					{{option_user.username}}
-				</option>
-			{% endfor %}	
-		</select>
+	<script type="text/javascript">
+	</script>
+	<select id="user_selector_tag_selector" size="1">
+		{% for option_user in users%}
+			<option value="{{option_user.id}}"  
+				{% ifequal selected_user option_user.id  %} 
+					selected
+				{% endifequal %}>
+				{{option_user.username}}
+			</option>
+		{% endfor %}	
+	</select>
 </div>
