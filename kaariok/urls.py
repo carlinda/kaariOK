@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.contrib.auth.views import login, logout
 import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -7,8 +8,9 @@ admin.autodiscover()
 
 # For testing only
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 def test_base(request):
-    return render_to_response('test.html')
+    return render_to_response('test.html',{},context_instance=RequestContext(request))
 # End testing
 
 urlpatterns = patterns('',
@@ -21,6 +23,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^accounts/login/$',  login),
+    (r'^accounts/logout/$', logout),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',

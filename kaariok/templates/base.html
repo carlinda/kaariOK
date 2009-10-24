@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- Load custom tags -->
+{% load user_selector_tag %}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
   <head>
     <link href="/site_media/css/base.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -22,6 +24,7 @@
             <li><a href="/">Portfolio<br /><span>Our woks</span></a></li>
             <li><a href="/">Prices<br /><span>How much it costs</span></a></li>
             <li><a href="/">Contact<br /><span>Write us!</span></a></li>
+			<li>{% user_selector user.id %}</li>
          </ul>
       </div> 
         
