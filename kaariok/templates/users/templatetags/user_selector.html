@@ -1,5 +1,6 @@
-<div id=user_selector_tag>
+<span id=user_selector_tag>
 	<script type="text/javascript">
+		var user_selector_tag_state_indicator_styles = 'style="width:25px;"';
 		$(document).ready(function(){
 			$("#user_selector_tag_selector").change( function(){
 				//Login user here. With an indicator thar the user is changing.
@@ -8,16 +9,16 @@
 					function(data){
 						if(data['success'])
 							$("#user_selector_tag_state_indicator").html(
-									"<img src='/site_media/images/utils/checkmark.png' />");
+									"<img src='/site_media/images/utils/checkmark.png' "+user_selector_tag_state_indicator_styles+" />");
 						else
 							$("#user_selector_tag_state_indicator").html(
-									"<img src='/site_media/images/utils/fail.png' />");
+									"<img src='/site_media/images/utils/fail.png' "+user_selector_tag_state_indicator_styles+"/>");
 					}
 				);
 			}
 			)
 		}).ajaxStart( function(){
-			$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'/>");
+			$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'"+user_selector_tag_state_indicator_styles+"/>");
 		}
 		);
 	</script>
@@ -30,5 +31,5 @@
 				{{option_user.username}}
 			</option>
 		{% endfor %}	
-	</select><div id="user_selector_tag_state_indicator"></div>
-</div>
+	</select> <span id="user_selector_tag_state_indicator" style="vertical-align:sub;"></span>
+</span>
