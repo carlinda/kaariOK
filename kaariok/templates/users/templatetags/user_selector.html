@@ -13,6 +13,9 @@
 						else
 							$("#user_selector_tag_state_indicator").html(
 									"<img src='/site_media/images/utils/fail.png' "+user_selector_tag_state_indicator_styles+"/>");
+						setTimeout(function(){
+							$("#user_selector_tag_state_indicator").fadeOut('slow',function(){$("#user_selector_tag_state_indicator").html('')}).fadeIn('fast');
+						},800);
 					}
 				);
 			}
