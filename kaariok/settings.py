@@ -68,6 +68,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'kaariok.users.CustomAuthModule.CustomBackend',
+)
+
 ROOT_URLCONF = 'kaariok.urls'
 
 TEMPLATE_DIRS = (
