@@ -6,9 +6,6 @@ KaariOK - Search
 
 {% block content %}
 
-Songs:<br>
-{% for song in songs %}
-	- {{song.name}}<br>
-{% endfor %}
+{{song_list_html}}
 
 {% endblock %}
