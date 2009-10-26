@@ -6,7 +6,7 @@ class Language(models.Model):
     full = models.CharField(blank=False, max_length=100)    
 
     def __unicode__(self):
-        return u"Language"
+        return self.full
 
 
 class Album(models.Model):

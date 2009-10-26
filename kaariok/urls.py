@@ -8,6 +8,7 @@ admin.autodiscover()
 
 # Project view imports
 from kaariok.users.views import login_user
+from kaariok.songs.views import song_search
 
 # For testing only
 from django.shortcuts import render_to_response
@@ -29,6 +30,9 @@ urlpatterns = patterns('',
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/login/(?P<user_id>.*)/$', login_user),
+    
+    # Song Urls
+    (r'^song/search/$', song_search),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
