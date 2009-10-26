@@ -1,4 +1,13 @@
 Songs:<br>
+<table id="song_list_selector">
 {% for song in songs %}
-	- {{song.name}}<br>
+	<tr>
+		<td>{{song.id}}</td>
+		<td>{{song.name}}</td>
+		<td>{{song.artist.name}}</td>
+		<td>{{song.album.code}}</td>
+		<td>{{song.approved}}</td>
+		<td>{{song.language.full}}</td>
+	</tr>
 {% endfor %}
+</table>
