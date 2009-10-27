@@ -1,5 +1,11 @@
+#song_list_div{
+    height:25em;
+    overflow-y:scroll;
+}
+
 #song_list_table{
     font-size:12px;
+    margin-top:0px;
 }
 
 #song_list_table td{
