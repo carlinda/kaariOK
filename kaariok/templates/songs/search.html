@@ -10,7 +10,18 @@ KaariOK - Search
 {% endblock %}
 
 {% block content %}
-
+Filters
+<div id="song_list_filters">
+	<span>
+		Approved: 
+		<select id="song_list_filters_approved" size="1">
+			<option val="3">All</option>
+			<option val="1">Yes</option>
+			<option val="2">No</option>
+			<option val="0">Unknown</option>
+		</select>
+	</span>
+</div>
 <div id="song_list_div">
 {{song_list_html}}
 </div>

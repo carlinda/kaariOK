@@ -14,3 +14,16 @@ $(
         )
     }
 );
+
+$(document).ready(function(){
+    $("#song_list_filters_approved").change( function(){
+        //Login user here. With an indicator thar the user is changing.
+        $.getJSON(
+            "/song/search/",
+            function(data){
+                    $("#song_list_div").html(data['html']);
+            }
+        );
+    }
+    );
+});
