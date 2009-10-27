@@ -21,3 +21,7 @@
      text-align:center;
      background-color:#6E98C1;
 }
+
+#song_list_table tr.highlight{
+    background-color:#243444;
+}
