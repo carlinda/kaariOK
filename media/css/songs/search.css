@@ -1,4 +1,17 @@
+#song_list_table{
+    font-size:12px;
+}
+
+#song_list_table td{
+    font-size:12px;
+    padding:2px 4px;
+}
+
 #song_list_table td img{
     width:15px;
 }
 
+.header td{
+     text-align:center;
+     background-color:#6E98C1;
+}

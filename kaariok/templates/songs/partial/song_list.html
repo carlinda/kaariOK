@@ -1,19 +1,19 @@
 Songs:<br>
 <div id="song_list_selector">
 <table id="song_list_table">
-	<tr>
-		<td style="text-align:center;">Id</td>
-		<td style="text-align:center;">Name</td>
-		<td style="text-align:center;">Artist</td>
-		<td style="text-align:center;">Album Code</td>
-		<td style="text-align:center;">Approved</td>
-		<td style="text-align:center;">Language</td>
+	<tr class="header">
+		<td>Id</td>
+		<td>Name</td>
+		<td>Artist</td>
+		<td>Album</td>
+		<td>Approved</td>
+		<td>Language</td>
 	</tr>
 {% for song in songs %}
 	<tr>
 		<td style="text-align:center;">{{song.id}}</td>
-		<td>{{song.name}}</td>
-		<td>{{song.artist.name}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{song.name}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{song.artist.name}}</td>
 		<td style="text-align:center;">{{song.album.code}}</td>
 		<td style="text-align:center;">
 			{% ifequal song.approved 2 %}
