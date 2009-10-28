@@ -18,12 +18,10 @@
 						},2000);
 					}
 				);
-			}
-			)
-		}).ajaxStart( function(){
-			$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'"+user_selector_tag_state_indicator_styles+"/>");
-		}
-		);
+				$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'"+user_selector_tag_state_indicator_styles+"/>");
+			
+		});
+	});
 	</script>
 	<select id="user_selector_tag_selector" size="1">
 		{% for option_user in users%}
