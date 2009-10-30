@@ -7,7 +7,21 @@ from django.http import HttpResponse
 from kaariok.songs.models import Song
 
 def song_search(request):
+    # Get params
+    approved_param = ""
+    try:
+        approved_param = int(request.GET.get('approved',''));
+    except:
+        pass
+        
     songs = Song.objects.all().extra(select={'name_upper' : 'upper(name)'}).order_by('name_upper')
+    
+    # Apply filters
+    # Approved filter
+    if approved_param is not '' and approved_param is not 3:        
+        songs = songs.filter(approved=approved_param);
+        
+        
     song_list_html = render_to_string('songs/partial/song_list.html',
         {'songs' : songs},
          context_instance=RequestContext(request)
