@@ -12,7 +12,7 @@ KaariOK - Search
 {% block content %}
 Filters
 <div id="song_list_filters">
-	<span>
+	<span class="filter_span">
 		Approved: 
 		<select id="song_list_filters_approved" size="1">
 			<option value="3">All</option>
@@ -21,6 +21,11 @@ Filters
 			<option value="0">Unknown</option>
 		</select>
 	</span>
+	<span class="filter_span">
+		Search:
+		<input type="text" id="search_filter_input"/>
+	</span>
+		
 </div>
 <div id="song_list_div">
 {{song_list_html}}

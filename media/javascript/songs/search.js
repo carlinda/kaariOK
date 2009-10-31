@@ -1,5 +1,6 @@
 var songlist_reload = function(){
     var approved = $("#song_list_filters_approved").val()
+    
     $.getJSON(
         "/song/search/",
         {
@@ -16,4 +17,9 @@ $(document).ready(function(){
         songlist_reload();
     }
     );
+    $("#search_filter_input").bind("change keyup", function(){
+        songlist_reload();
+    }
+    );
 });
+
