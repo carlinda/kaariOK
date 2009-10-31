@@ -1,20 +1,3 @@
-//Song list row highlighing
-$(
-    function()
-    {
-        $("#song_list_table tr").hover(
-            function()
-            {
-                $(this).addClass("highlight");
-            },
-            function()
-            {
-                $(this).removeClass("highlight");
-            }
-        )
-    }
-);
-
 $(document).ready(function(){
     $("#song_list_filters_approved").change( function(){
         //Login user here. With an indicator thar the user is changing.

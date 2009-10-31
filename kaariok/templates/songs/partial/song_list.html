@@ -1,3 +1,22 @@
+<script type"text/javascript">
+//Song list row highlighing
+$(
+    function()
+    {
+        $("#song_list_table tr").hover(
+            function()
+            {
+                $(this).addClass("highlight");
+            },
+            function()
+            {
+                $(this).removeClass("highlight");
+            }
+        );
+    }
+);
+</script
+
 <div id="song_list_selector">
 <table id="song_list_table">
 	<tr class="header">
