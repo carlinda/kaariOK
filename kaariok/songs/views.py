@@ -20,7 +20,7 @@ def song_search(request):
     except:
         pass
         
-    songs = Song.objects.all()#.extra(select={'name_upper' : 'upper(name)'}).order_by('name_upper')
+    songs = Song.objects.all()
     
     # Apply filters
     # Approved filter
@@ -29,8 +29,9 @@ def song_search(request):
     # Search string filter
     if search_string is not '':
         songs = songs.filter(Q(name__icontains=search_string) | Q(artist__name__icontains=search_string))
-        
-        
+    
+    songs = songs.extra(select={'name_upper' : 'upper(songs_song.name)'}).order_by('name_upper')
+    
     song_list_html = render_to_string('songs/partial/song_list.html',
         {'songs' : songs},
          context_instance=RequestContext(request)
