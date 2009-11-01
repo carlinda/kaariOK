@@ -66,12 +66,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'kaariok.users.CustomAuthModule.CustomBackend',
 )
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'kaariok.urls'
 
@@ -91,4 +94,5 @@ INSTALLED_APPS = (
     'kaariok.songs',
     'kaariok.users',
     'kaariok.playlists',
+    'debug_toolbar',
 )
