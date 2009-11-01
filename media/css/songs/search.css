@@ -25,3 +25,11 @@
 #song_list_table tr.highlight{
     background-color:#243444;
 }
+
+#song_list_filters{
+    margin-bottom : 8px;
+}
+
+.filter_span{
+    margin: 0px 10px;
+}
