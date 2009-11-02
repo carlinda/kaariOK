@@ -5,7 +5,7 @@ from kaariok.songs.models import Song
 class Rating(models.Model):
     """(Rating description)"""
     KNOWN_VALUES=(
-        ('unknown', 'Unknown'),
+        ('meh', 'Meh'),
         ('known', 'Known'),
         ('hate', 'Hate'),
         ('love', 'Love'),

@@ -1,3 +1,5 @@
+<span style="color:#FF0000;">Convert links in Song detail into ajax request!!!</span><br>
+
 Song detail:<br>
 	- {{song.id}}<br>
 	- {{song.name}}<br>
@@ -5,25 +7,25 @@ Song detail:<br>
 	- {{song.language}}<br>
 	-
 	{% ifequal rating 'hate'  %}
-		<img src='/site_media/images/utils/hate.png' alt='hate'/>
+		<a href="/rating/{{song.id}}/hate/remove/" title='Remove Hate'><img src='/site_media/images/utils/hate.png'></a>
 	{% else %}
-		<img src='/site_media/images/utils/hate_grey.png' alt='hate'/>
+		<a href="/rating/{{song.id}}/hate/" title='Hate'><img src='/site_media/images/utils/hate_grey.png'/></a>
 	{% endifequal %}
 	
-	{% ifequal rating 'unknown'  %}
-		<img src='/site_media/images/utils/meh.png' alt='meh'/>
+	{% ifequal rating 'meh'  %}
+		<a href="/rating/{{song.id}}/meh/remove/" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
 	{% else %}
-		<img src='/site_media/images/utils/meh_grey.png' alt='meh'/>
+		<a href="/rating/{{song.id}}/meh/" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
 	{% endifequal %}
 	
 	{% ifequal rating 'known'  %}
-		<img src='/site_media/images/utils/know.png' alt='know'/>
+		<a href="/rating/{{song.id}}/know/remove/" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
 	{% else %}
-		<img src='/site_media/images/utils/know_grey.png' alt='know'/>
+		<a href="/rating/{{song.id}}/know/" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
 	{% endifequal %}
 	
 	{% ifequal rating 'love'  %}
-		<img src='/site_media/images/utils/love.png' alt='love'/>
+		<a href="/rating/{{song.id}}/love/remove/" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
 	{% else %}
-		<img src='/site_media/images/utils/love_grey.png' alt='love'/>
+		<a href="/rating/{{song.id}}/love/" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
 	{% endifequal %}
