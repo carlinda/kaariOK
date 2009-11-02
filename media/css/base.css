@@ -25,12 +25,21 @@ h5 { font-size:100%; }
 
 /* layout ---------------------------------------------------------------------- */
 #layout { 
-  width:790px; 
+  width:900px; 
   margin:0 auto; 
   text-align:left; 
 }
   #container { 
   padding-top: 12px;
+  }
+  
+  #main_content_box{
+      float:left;
+  }
+  
+  #panel_right{
+      width:310px;
+      float:right;
   }
 
   	/* header ------------------------------------------------------------------ */
