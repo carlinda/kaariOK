@@ -48,3 +48,24 @@ def song_search(request):
             'song_list_html' : song_list_html,
         },
         context_instance=RequestContext(request))
+        
+def song_detail(request, song_id):
+    song = Song.objects.get(id=song_id)
+
+    song_detail_html = render_to_string('songs/partial/song_detail.html',
+        {'song' : song},
+         context_instance=RequestContext(request)
+    )
+
+    if request.is_ajax():
+        output = {
+            'html' : song_detail_html,
+        }
+        return HttpResponse(simplejson.dumps(output))
+    else:
+        pass
+        # return render_to_response('songs/search.html',
+        # {
+        #     'song_list_html' : song_list_html,
+        # },
+        # context_instance=RequestContext(request))
