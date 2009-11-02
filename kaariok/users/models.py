@@ -6,16 +6,14 @@ class Rating(models.Model):
     """(Rating description)"""
     KNOWN_VALUES=(
         ('unknown', 'Unknown'),
-        ('yes', 'Yes'),
-        ('no', 'No'),
+        ('known', 'Known'),
+        ('hate', 'Hate'),
         ('love', 'Love'),
     )
     user = models.ForeignKey(User)
     song = models.ForeignKey(Song)
     comment = models.CharField(blank=True, max_length=600)
-    value = models.CharField(blank=True, max_length=100)
-    # known = models.IntegerField(blank=False, choices=KNOWN_VALUES)
-
+    value = models.CharField(blank=False, choices=KNOWN_VALUES, max_length=7)
 
     def __unicode__(self):
         return u"Rating"

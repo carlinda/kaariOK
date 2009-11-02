@@ -3,3 +3,27 @@ Song detail:<br>
 	- {{song.name}}<br>
 	- {{song.track}}<br>
 	- {{song.language}}<br>
+	-
+	{% ifequal rating 'hate'  %}
+		<img src='/site_media/images/utils/hate.png' alt='hate'/>
+	{% else %}
+		<img src='/site_media/images/utils/hate_grey.png' alt='hate'/>
+	{% endifequal %}
+	
+	{% ifequal rating 'unknown'  %}
+		<img src='/site_media/images/utils/meh.png' alt='meh'/>
+	{% else %}
+		<img src='/site_media/images/utils/meh_grey.png' alt='meh'/>
+	{% endifequal %}
+	
+	{% ifequal rating 'known'  %}
+		<img src='/site_media/images/utils/know.png' alt='know'/>
+	{% else %}
+		<img src='/site_media/images/utils/know_grey.png' alt='know'/>
+	{% endifequal %}
+	
+	{% ifequal rating 'love'  %}
+		<img src='/site_media/images/utils/love.png' alt='love'/>
+	{% else %}
+		<img src='/site_media/images/utils/love_grey.png' alt='love'/>
+	{% endifequal %}
