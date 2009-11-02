@@ -1,3 +1,14 @@
+<script type="text/javascript">
+var changeRating = function(newStatus, action){
+     $.getJSON(
+                "/rating/{{song.id}}/"+newStatus+"/"+action+"/",
+                {},
+                function(data){
+                     alert("swa");
+                }
+                );
+}
+</script>
 Song detail:<br>
 	- {{song.id}}<br>
 	- {{song.name}}<br>
@@ -5,25 +16,25 @@ Song detail:<br>
 	- {{song.language}}<br>
 	-
 	{% ifequal rating 'hate'  %}
-		<a href="/rating/{{song.id}}/hate/remove/" title='Remove Hate'><img src='/site_media/images/utils/hate.png'></a>
+		<img onclick="changeRating('hate','remove');" src='/site_media/images/utils/hate.png' title='Remove Hate' />
 	{% else %}
-		<a href="/rating/{{song.id}}/hate/" title='Hate'><img src='/site_media/images/utils/hate_grey.png'/></a>
+		<img onclick="changeRating('hate','switch');" src='/site_media/images/utils/hate_grey.png'title='Hate' />
 	{% endifequal %}
 	
 	{% ifequal rating 'meh'  %}
-		<a href="/rating/{{song.id}}/meh/remove/" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
+		<a onclick="changeRating('meh','remove');" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
 	{% else %}
-		<a href="/rating/{{song.id}}/meh/" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
+		<a onclick="changeRating('meh','switch');" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
 	{% endifequal %}
 	
 	{% ifequal rating 'known'  %}
-		<a href="/rating/{{song.id}}/know/remove/" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
+		<a onclick="changeRating('known','remove');" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
 	{% else %}
-		<a href="/rating/{{song.id}}/know/" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
+		<a honclick="changeRating('known','switch');" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
 	{% endifequal %}
 	
 	{% ifequal rating 'love'  %}
-		<a href="/rating/{{song.id}}/love/remove/" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
+		<a onclick="changeRating('love','remove');" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
 	{% else %}
-		<a href="/rating/{{song.id}}/love/" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
+		<a onclick="changeRating('love','switch');" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
 	{% endifequal %}
