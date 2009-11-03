@@ -12,7 +12,13 @@ var changeRating = function(newStatus, action){
 var saveEdit = function(){
      $.getJSON(
                 "/song/{{song.id}}/edit/save/",
-                {},
+                {
+                    'name' :$("#song_name_input").val(),
+                    'track'     :$("#song_track_input").val(),
+                    'language'  :$("#song_language_input").val(),
+                    'filename'  :$("#song_filename_input").val(),
+                    'approved'  :$("#song_approved_input").val()
+                },
                 function(data){
                      $("#panel_right_content").html(data['html']);
                 }
@@ -53,16 +59,16 @@ var saveEdit = function(){
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Name</td>
-	        <td><input type="text" name="song_name" value="{{song.name}}" size="29" /></td>
+	        <td><input id="song_name_input" type="text" name="song_name" value="{{song.name}}" size="29" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Track</td>
-	        <td><input type="text" name="song_track" value="{% if song.track %}{{song.track}}{% endif %}" size="2" /></td>
+	        <td><input id="song_track_input" type="text" name="song_track" value="{% if song.track %}{{song.track}}{% endif %}" size="2" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Language</td>
 	        <td>
-	            <select>
+	            <select id="song_language_input">
 	            {% for language in languages%}
 	                <option value="{{language.id}}" {% ifequal language song.language %}selected{% endifequal %}>{{language.full}}</option>
 	            {% endfor %}
@@ -71,12 +77,12 @@ var saveEdit = function(){
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Filename</td>
-	        <td><input type="text" name="song_filename" value="{{song.filename}}" size="29" /></td>
+	        <td><input id="song_filename_input" type="text" name="song_filename" value="{{song.filename}}" size="29" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Approved</td>
 	        <td>
-	            <select>
+	            <select id="song_approved_input">
     	            {% for key, value in approval_choices %}
     	                <option value="{{key}}" {% ifequal key song.approved %}selected{% endifequal %}>{{value}}</option>
     	            {% endfor %}

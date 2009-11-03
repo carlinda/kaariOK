@@ -124,6 +124,44 @@ def song_edit(request, song_id):
         # },
         # context_instance=RequestContext(request))
         
-def song_save_edit(request, song_id):
+def song_save_edit(request,song_id):
+    # Get params
+    name_param = ""
+    track_param = ""
+    language_param = ""
+    filename_param = ""
+    approved_param = ""
+    try:
+        name_param = request.GET.get('name','')
+    except:
+        pass
+    try:
+        track_param = request.GET.get('track','')
+    except:
+        pass
+    try:
+        language_param = request.GET.get('language','')
+    except:
+        pass
+    try:
+        filename_param = request.GET.get('filename','')
+    except:
+        pass
+    try:
+        approved_param = int(request.GET.get('approved',''));
+    except:
+        pass
+
+    # Get song
+    song = Song.objects.get(id=song_id)
     
+    # Update song details
+    song.name = name_param;
+    song.track = track_param
+    song.language = Language.objects.get(id=language_param)
+    song.filename = filename_param
+    song.approved = approved_param
+    
+    song.save()    
+
     return song_detail(request, song_id)
