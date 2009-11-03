@@ -157,7 +157,9 @@ def song_save_edit(request,song_id):
     
     # Update song details
     song.name = name_param;
-    song.track = track_param
+    if track_param is not u'':
+        assert False
+        song.track = track_param
     song.language = Language.objects.get(id=language_param)
     song.filename = filename_param
     song.approved = approved_param

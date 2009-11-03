@@ -57,7 +57,7 @@ var editSong = function(){
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Track</td>
-	        <td>{{song.track}}</td>
+	        <td>{% if song.track %}{{song.track}}{% else %}-{% endif %}</td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Language</td>
