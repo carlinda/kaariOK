@@ -18,21 +18,21 @@ var changeRating = function(newStatus, action){
         	{% endifequal %}
 	
         	{% ifequal rating 'meh'  %}
-        		<a onclick="changeRating('meh','remove');" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
+        		<img onclick="changeRating('meh','remove');" src='/site_media/images/utils/meh.png' title='Remove Meh'/>
         	{% else %}
-        		<a onclick="changeRating('meh','switch');" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
+        		<img src='/site_media/images/utils/meh_grey.png' onclick="changeRating('meh','switch');" title='Meh'/>
         	{% endifequal %}
 	
         	{% ifequal rating 'known'  %}
-        		<a onclick="changeRating('known','remove');" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
+        		<img src='/site_media/images/utils/know.png' onclick="changeRating('known','remove');" title='Remove Known'/>
         	{% else %}
-        		<a onclick="changeRating('known','switch');" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
+        		<img src='/site_media/images/utils/know_grey.png' onclick="changeRating('known','switch');" title='Known'/>
         	{% endifequal %}
 	
         	{% ifequal rating 'love'  %}
-        		<a onclick="changeRating('love','remove');" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
+        		<img src='/site_media/images/utils/love.png' onclick="changeRating('love','remove');" title='Remove Love'/>
         	{% else %}
-        		<a onclick="changeRating('love','switch');" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
+        		<img src='/site_media/images/utils/love_grey.png' onclick="changeRating('love','switch');" title='Love'/>
         	{% endifequal %}
     	</div>
     </center>
@@ -70,4 +70,4 @@ var changeRating = function(newStatus, action){
 			{% endifequal %}</td>
 	    </tr>
 	</table>
-	<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;' />
+	<a ><img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'/>
