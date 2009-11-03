@@ -8,6 +8,16 @@ var changeRating = function(newStatus, action){
                 }
                 );
 }
+
+var saveEdit = function(){
+     $.getJSON(
+                "/song/{{song.id}}/edit/save/",
+                {},
+                function(data){
+                     $("#panel_right_content").html(data['html']);
+                }
+                );
+}
 </script>
     <center>
         <div id="ratings_indicator" style="margin-top:10px;">
@@ -74,4 +84,4 @@ var changeRating = function(newStatus, action){
 	        </td>
 	    </tr>
 	</table>
-	<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'  onclick="editSong();" title='Edit Song'/>
+	<img src='/site_media/images/utils/save.png' style='width:20px; float:right;'  onclick="saveEdit();" title='Save'/>

@@ -123,3 +123,7 @@ def song_edit(request, song_id):
         #     'rating' : value,
         # },
         # context_instance=RequestContext(request))
+        
+def song_save_edit(request, song_id):
+    
+    return song_detail(request, song_id)
