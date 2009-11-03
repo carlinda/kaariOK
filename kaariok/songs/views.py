@@ -50,7 +50,7 @@ def song_search(request):
         },
         context_instance=RequestContext(request))
         
-def song_detail(request, song_id):
+def song_detail(request, song_id, innerCall=False):
     song = Song.objects.get(id=song_id)
     try:
         rating = Rating.objects.get(user=request.user, song=song_id)
@@ -71,7 +71,7 @@ def song_detail(request, song_id):
          context_instance=RequestContext(request)
     )
 
-    if request.is_ajax():
+    if request.is_ajax() or innerCall:
         output = {
             'html' : song_detail_html,
         }

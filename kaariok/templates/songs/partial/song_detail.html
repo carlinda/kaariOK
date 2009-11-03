@@ -4,37 +4,69 @@ var changeRating = function(newStatus, action){
                 "/rating/{{song.id}}/"+newStatus+"/"+action+"/",
                 {},
                 function(data){
-                     alert("swa");
+                     $("#panel_right_content").html(data['html']);
                 }
                 );
 }
 </script>
-Song detail:<br>
-	- {{song.id}}<br>
-	- {{song.name}}<br>
-	- {{song.track}}<br>
-	- {{song.language}}<br>
-	-
-	{% ifequal rating 'hate'  %}
-		<img onclick="changeRating('hate','remove');" src='/site_media/images/utils/hate.png' title='Remove Hate' />
-	{% else %}
-		<img onclick="changeRating('hate','switch');" src='/site_media/images/utils/hate_grey.png'title='Hate' />
-	{% endifequal %}
+    <center>
+        <div id="ratings_indicator" style="margin-top:10px;">
+        	{% ifequal rating 'hate'  %}
+        		<img onclick="changeRating('hate','remove');" src='/site_media/images/utils/hate.png' title='Remove Hate' />
+        	{% else %}
+        		<img onclick="changeRating('hate','switch');" src='/site_media/images/utils/hate_grey.png'title='Hate' />
+        	{% endifequal %}
 	
-	{% ifequal rating 'meh'  %}
-		<a onclick="changeRating('meh','remove');" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
-	{% else %}
-		<a onclick="changeRating('meh','switch');" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
-	{% endifequal %}
+        	{% ifequal rating 'meh'  %}
+        		<a onclick="changeRating('meh','remove');" title='Remove Meh'><img src='/site_media/images/utils/meh.png'/></a>
+        	{% else %}
+        		<a onclick="changeRating('meh','switch');" title='Meh'><img src='/site_media/images/utils/meh_grey.png'/></a>
+        	{% endifequal %}
 	
-	{% ifequal rating 'known'  %}
-		<a onclick="changeRating('known','remove');" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
-	{% else %}
-		<a honclick="changeRating('known','switch');" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
-	{% endifequal %}
+        	{% ifequal rating 'known'  %}
+        		<a onclick="changeRating('known','remove');" title='Remove Known'><img src='/site_media/images/utils/know.png'/></a>
+        	{% else %}
+        		<a onclick="changeRating('known','switch');" title='Known'><img src='/site_media/images/utils/know_grey.png'/></a>
+        	{% endifequal %}
 	
-	{% ifequal rating 'love'  %}
-		<a onclick="changeRating('love','remove');" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
-	{% else %}
-		<a onclick="changeRating('love','switch');" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
-	{% endifequal %}
+        	{% ifequal rating 'love'  %}
+        		<a onclick="changeRating('love','remove');" title='Remove Love'><img src='/site_media/images/utils/love.png'/></a>
+        	{% else %}
+        		<a onclick="changeRating('love','switch');" title='Love'><img src='/site_media/images/utils/love_grey.png'/></a>
+        	{% endifequal %}
+    	</div>
+    </center>
+	<table id="song_detail_table">
+        <tr>
+	        <td class="left_header_cell">Id</td>
+	        <td>{{song.id}}</td>
+	    </tr>
+	    <tr>
+	        <td class="left_header_cell">Name</td>
+	        <td>{{song.name}}</td>
+	    </tr>
+	    <tr>
+	        <td class="left_header_cell">Track</td>
+	        <td>{{song.track}}</td>
+	    </tr>
+	    <tr>
+	        <td class="left_header_cell">Language</td>
+	        <td>{{song.language.full}}</td>
+	    </tr>
+	    <tr>
+	        <td class="left_header_cell">Filename</td>
+	        <td>{{song.filename}}</td>
+	    </tr>
+	    <tr>
+	        <td class="left_header_cell">Approved</td>
+	        <td>{% ifequal song.approved 2 %}
+				<img src='/site_media/images/utils/redflag.png'/>
+			{% else %}
+				{% ifequal song.approved 1 %}
+					<img src='/site_media/images/utils/greenflag.png'/>
+				{% else %}
+					<img src='/site_media/images/utils/whiteflag.png'/>
+				{% endifequal %}	
+			{% endifequal %}</td>
+	    </tr>
+	</table>

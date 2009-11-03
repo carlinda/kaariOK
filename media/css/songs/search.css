@@ -33,3 +33,13 @@
 .filter_span{
     margin: 0px 10px;
 }
+
+#song_detail_table img{
+    width:20px;
+    vertical-align:middle;
+}
+
+#song_detail_table .left_header_cell{
+    width:5em;
+    background-color:#6E98C1;
+}

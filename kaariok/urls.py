@@ -7,7 +7,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 # Project view imports
-from kaariok.users.views import login_user
+from kaariok.users.views import login_user, changeRating
 from kaariok.songs.views import song_search, song_detail
 
 # For testing only
@@ -34,6 +34,9 @@ urlpatterns = patterns('',
     # Song Urls
     (r'^song/search/$', song_search),
     (r'^song/(?P<song_id>.*)/$', song_detail),
+    
+    # Rating
+    (r'^rating/(?P<song_id>.*)/(?P<new_status>.*)/(?P<action>.*)/$', changeRating),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',

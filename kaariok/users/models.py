@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from kaariok.songs.models import Song
 
+
 class Rating(models.Model):
     """(Rating description)"""
     KNOWN_VALUES=(
