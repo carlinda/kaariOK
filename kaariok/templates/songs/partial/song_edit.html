@@ -8,16 +8,6 @@ var changeRating = function(newStatus, action){
                 }
                 );
 }
-
-var editSong = function(){
-    $.getJSON(
-                "/song/{{song.id}}/edit/",
-                {},
-                function(data){
-                     $("#panel_right_content").html(data['html']);
-                }
-                );
-}
 </script>
     <center>
         <div id="ratings_indicator" style="margin-top:10px;">
@@ -53,31 +43,35 @@ var editSong = function(){
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Name</td>
-	        <td>{{song.name}}</td>
+	        <td><input type="text" name="song_name" value="{{song.name}}" size="29" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Track</td>
-	        <td>{{song.track}}</td>
+	        <td><input type="text" name="song_track" value="{% if song.track %}{{song.track}}{% endif %}" size="2" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Language</td>
-	        <td>{{song.language.full}}</td>
+	        <td>
+	            <select>
+	            {% for language in languages%}
+	                <option value="{{language.id}}" {% ifequal language song.language %}selected{% endifequal %}>{{language.full}}</option>
+	            {% endfor %}
+	            </select>
+	        </td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Filename</td>
-	        <td>{{song.filename}}</td>
+	        <td><input type="text" name="song_filename" value="{{song.filename}}" size="29" /></td>
 	    </tr>
 	    <tr>
 	        <td class="left_header_cell">Approved</td>
-	        <td>{% ifequal song.approved 2 %}
-				<img src='/site_media/images/utils/redflag.png'/>
-			{% else %}
-				{% ifequal song.approved 1 %}
-					<img src='/site_media/images/utils/greenflag.png'/>
-				{% else %}
-					<img src='/site_media/images/utils/whiteflag.png'/>
-				{% endifequal %}	
-			{% endifequal %}</td>
+	        <td>
+	            <select>
+    	            {% for key, value in approval_choices %}
+    	                <option value="{{key}}" {% ifequal key song.approved %}selected{% endifequal %}>{{value}}</option>
+    	            {% endfor %}
+	            </select>
+	        </td>
 	    </tr>
 	</table>
 	<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'  onclick="editSong();" title='Edit Song'/>

@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.db.models import Q
 
-from kaariok.songs.models import Song
+from kaariok.songs.models import Song, Language
 from kaariok.users.models import Rating
 
 def song_search(request):
@@ -67,6 +67,45 @@ def song_detail(request, song_id, innerCall=False):
         {   
             'song' : song,
             'rating' : value,
+        },
+         context_instance=RequestContext(request)
+    )
+
+    if request.is_ajax() or innerCall:
+        output = {
+            'html' : song_detail_html,
+        }
+        return HttpResponse(simplejson.dumps(output))
+    else:
+        pass
+        # return render_to_response('songs/partial/song_detail.html',
+        # {   
+        #     'song' : song,
+        #     'rating' : value,
+        # },
+        # context_instance=RequestContext(request))
+
+def song_edit(request, song_id):
+    song = Song.objects.get(id=song_id)
+    try:
+        rating = Rating.objects.get(user=request.user, song=song_id)
+    except:
+        rating='unknown'
+
+    value = ''
+    if rating is not 'unknown':
+        value = rating.value.lower()
+    else:
+        value = rating
+        
+    languages = Language.objects.all()
+
+    song_detail_html = render_to_string('songs/partial/song_edit.html',
+        {   
+            'song' : song,
+            'rating' : value,
+            'approval_choices':Song.APPROVAL_CHOICES,
+            'languages' : languages,
         },
          context_instance=RequestContext(request)
     )

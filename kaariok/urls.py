@@ -8,7 +8,7 @@ admin.autodiscover()
 
 # Project view imports
 from kaariok.users.views import login_user, changeRating
-from kaariok.songs.views import song_search, song_detail
+from kaariok.songs.views import song_search, song_detail, song_edit
 
 # For testing only
 from django.shortcuts import render_to_response
@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     
     # Song Urls
     (r'^song/search/$', song_search),
+    (r'^song/(?P<song_id>.*)/edit/$', song_edit),
     (r'^song/(?P<song_id>.*)/$', song_detail),
     
     # Rating
