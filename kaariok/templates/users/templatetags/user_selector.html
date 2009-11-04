@@ -1,6 +1,6 @@
 <span id="user_selector_tag" style="position:relative;">
 	<script type="text/javascript">
-		var user_selector_tag_state_indicator_styles = 'style="width:25px;"';
+		var user_selector_tag_state_indicator_styles = 'style="width:16px;"';
 		$(document).ready(function(){
 			$("#user_selector_tag_selector").change( function(){
 				//Login user here. With an indicator thar the user is changing.
@@ -24,12 +24,23 @@
 		});
 		
 		var showAddUser = function(){
-			$("#user_selector_new").show();
+			$("#user_selector_new").fadeIn(500);
 		}
 
 		var cancelAddUser = function(){
 			$("#user_new_input").val("");
-			$("#user_selector_new").hide();
+			$("#user_selector_new").fadeOut(500);
+		}
+		
+		var addNewUser = function(){
+			var long_lang = $("#user_new_input").val("");
+			$.getJSON(
+		                "",
+		                {},
+		                function(data){
+		                     //Update the selector
+		                }
+		                );
 		}
 	</script>
 	<select id="user_selector_tag_selector" size="1">
