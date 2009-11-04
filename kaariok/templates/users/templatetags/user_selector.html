@@ -1,4 +1,4 @@
-<span id=user_selector_tag>
+<span id="user_selector_tag" style="position:relative;">
 	<script type="text/javascript">
 		var user_selector_tag_state_indicator_styles = 'style="width:25px;"';
 		$(document).ready(function(){
@@ -20,8 +20,17 @@
 				);
 				$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'"+user_selector_tag_state_indicator_styles+"/>");
 			
+			});
 		});
-	});
+		
+		var showAddUser = function(){
+			$("#user_selector_new").show();
+		}
+
+		var cancelAddUser = function(){
+			$("#user_new_input").val("");
+			$("#user_selector_new").hide();
+		}
 	</script>
 	<select id="user_selector_tag_selector" size="1">
 		{% if not user.is_authenticated %}
@@ -35,5 +44,15 @@
 				{{option_user.username}}
 			</option>
 		{% endfor %}	
-	</select> <span id="user_selector_tag_state_indicator" style="vertical-align:sub;"></span>
+	</select>
+	<img src='/site_media/images/utils/add.png' style='width:20px;vertical-align:middle;'  onclick="showAddUser();" title='Add a User'/>
+	<span id="user_selector_tag_state_indicator" style="vertical-align:sub;"></span>
+	<span id="user_selector_new" 
+			style="position:absolute; z-index:10;display:none; background-color:#0B3861; padding: 2px 4px 2px 4px; 
+			border:solid 1px #1C1C1C; width:240px;top:-3px;left:-5px;">
+		<input id="user_new_input" type="text" name="new_language" value="" size="25" />
+		<img src='/site_media/images/utils/add.png' style='width:20px;vertical-align:middle;'  onclick=";" title='Add'/>
+		<img src='/site_media/images/utils/fail.png' style='width:20px; vertical-align:middle;'  onclick="cancelAddUser();" title='Cancel'/>
+	</span>
+	
 </span>
