@@ -137,6 +137,10 @@ def song_save_edit(request,song_id):
         pass
     try:
         track_param = request.GET.get('track','')
+        try:
+            int(track_param)
+        except:
+            track_param = u''
     except:
         pass
     try:
@@ -158,8 +162,9 @@ def song_save_edit(request,song_id):
     # Update song details
     song.name = name_param;
     if track_param is not u'':
-        assert False
         song.track = track_param
+    else:
+        song.track = None
     song.language = Language.objects.get(id=language_param)
     song.filename = filename_param
     song.approved = approved_param
