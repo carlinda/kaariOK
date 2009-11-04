@@ -24,6 +24,10 @@ var saveEdit = function(){
                 }
                 );
 }
+
+var showAddLanguage = function(){
+	$("#song_language_new").show();
+}
 </script>
     <center>
         <div id="ratings_indicator" style="margin-top:10px;">
@@ -68,11 +72,18 @@ var saveEdit = function(){
 	    <tr>
 	        <td class="left_header_cell">Language</td>
 	        <td>
+				<span id="song_language_new" 
+						style="position:absolute; z-index:10;display:none; background-color:#0174DF; padding: 2px 4px 2px 4px;">
+					<input id="song_language_new_input" type="text" name="new_language" value="" size="25" />
+					<img src='/site_media/images/utils/add.png' style='width:20px;vertical-align:middle;'  onclick=";" title='Add'/>
+					<img src='/site_media/images/utils/fail.png' style='width:20px; vertical-align:middle;'  onclick=";" title='Cancel'/>
+				</span>
 	            <select id="song_language_input">
 	            {% for language in languages%}
 	                <option value="{{language.id}}" {% ifequal language song.language %}selected{% endifequal %}>{{language.full}}</option>
 	            {% endfor %}
 	            </select>
+				<img src='/site_media/images/utils/add.png' style='width:20px; vertical-align:middle;'  onclick="showAddLanguage();" title='Add'/>
 	        </td>
 	    </tr>
 	    <tr>
