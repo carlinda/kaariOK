@@ -3,7 +3,9 @@
 		var user_selector_tag_state_indicator_styles = 'style="width:16px;"';
 		$(document).ready(function(){
 			$("#user_selector_tag_selector").change( function(){
-				//Login user here. With an indicator thar the user is changing.
+				//Login user here. With an indicator that the user is changing.
+				if ($("#user_selector_tag_selector").val()=="")
+					return;
 				$.getJSON(
 					"/accounts/login/"+$("#user_selector_tag_selector").val()+"/",
 					function(data){
@@ -44,7 +46,7 @@
 		}
 	</script>
 	<select id="user_selector_tag_selector" size="1">
-		{% if not user.is_authenticated %}
+		{% if not selected_user %}
 			<option value="" selected>--</option>
 		{% endif %}
 		{% for option_user in users%}
