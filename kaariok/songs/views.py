@@ -45,26 +45,33 @@ def song_search(request):
     if search_string is not '':
         songs = songs.filter(Q(name__icontains=search_string) | Q(artist__name__icontains=search_string))
     # Ratings filters
+    unrated_Q = Q()
+    hate_Q    = Q()
+    meh_Q     = Q()
+    known_Q   = Q()
+    love_Q    = Q()
     if ratings['unrated']:
         user_ratings = Rating.objects.filter(user=request.user)
         rated_songs = [rat.song.id for rat in user_ratings]
-        songs = songs.filter(~Q(id__in=rated_songs))
+        unrated_Q = ~Q(id__in=rated_songs)
     if ratings['hate']:
         user_ratings = Rating.objects.filter(user=request.user, value='hate')
         hated_songs = [rat.song.id for rat in user_ratings]
-        songs = songs.filter(id__in=hated_songs)
+        hate_Q = Q(id__in=hated_songs)
     if ratings['meh']:
         user_ratings = Rating.objects.filter(user=request.user, value='meh')
         mehed_songs = [rat.song.id for rat in user_ratings]
-        songs = songs.filter(id__in=mehed_songs)
+        meh_Q = Q(id__in=mehed_songs)
     if ratings['known']:
         user_ratings = Rating.objects.filter(user=request.user, value='known')
         known_songs = [rat.song.id for rat in user_ratings]
-        songs = songs.filter(id__in=known_songs)
+        known_Q = Q(id__in=known_songs)
     if ratings['love']:
         user_ratings = Rating.objects.filter(user=request.user, value='love')
         loved_songs = [rat.song.id for rat in user_ratings]
-        songs = songs.filter(id__in=loved_songs)
+        love_Q = Q(id__in=loved_songs)
+    
+    songs = songs.filter(unrated_Q | hate_Q | meh_Q | known_Q | love_Q)
     
     songs = songs.extra(select={'name_upper' : 'upper(songs_song.name)'}).order_by('name_upper')
     
