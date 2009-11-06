@@ -34,6 +34,15 @@
     margin: 0px 10px;
 }
 
+#rating_filter_checkboxes{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+#rating_filter_checkboxes input{
+    margin-left:10px;
+}
+
 #song_detail_table img{
     width:20px;
     vertical-align:middle;

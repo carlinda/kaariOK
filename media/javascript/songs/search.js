@@ -20,6 +20,9 @@ $(document).ready(function(){
     );
     $("#search_filter_input").bind("change keyup", function(){
         songlist_reload();
+    });
+    $("#rating_filter_checkboxes input").change( function(){
+        songlist_reload();
     }
     );
 });
