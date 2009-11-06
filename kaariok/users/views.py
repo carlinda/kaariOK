@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.utils import simplejson
 from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.template import RequestContext
 
 from django.contrib.auth.models import User
 from kaariok.users.models import Rating
@@ -39,3 +41,16 @@ def changeRating(request, song_id ,new_status, action):
     
     return song_detail(request, song_id, True)
     
+def new_user(request):
+    name = request.GET.get('newUserName','').replace(" ", "")
+    user = User.objects.create_user(name, '', '')
+    user.save()
+    
+    users = User.objects.all().extra(select={'username_upper': 'upper(username)'}).order_by('username_upper')
+    
+    html = render_to_string('users/templatetags/user_selector.html', {'users':users, 'selected_user':user.id}, context_instance=RequestContext(request));
+    
+    output = {
+        'html' : html,
+    }
+    return HttpResponse(simplejson.dumps(output))

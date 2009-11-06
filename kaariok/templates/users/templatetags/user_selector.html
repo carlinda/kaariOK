@@ -35,15 +35,18 @@
 		}
 		
 		var addNewUser = function(){
-			var long_lang = $("#user_new_input").val("");
 			$.getJSON(
-		                "",
-		                {},
+		                "/accounts/user/new/",
+		                {
+							'newUserName': $("#user_new_input").val()
+						},
 		                function(data){
-		                     //Update the selector
+		                    $('#user_selector_li').html(data['html']);
+							cancelAddUser();
 		                }
 		                );
 		}
+		
 	</script>
 	<select id="user_selector_tag_selector" size="1">
 		{% if not selected_user %}
@@ -64,7 +67,7 @@
 			style="position:absolute; z-index:10;display:none; background-color:#0B3861; padding: 2px 4px 2px 4px; 
 			border:solid 1px #1C1C1C; width:240px;top:-3px;left:-5px;">
 		<input id="user_new_input" type="text" name="new_language" value="" size="25" />
-		<img src='/site_media/images/utils/add.png' style='width:20px;vertical-align:middle;'  onclick=";" title='Add'/>
+		<img src='/site_media/images/utils/add.png' style='width:20px;vertical-align:middle;'  onclick="addNewUser();" title='Add'/>
 		<img src='/site_media/images/utils/fail.png' style='width:20px; vertical-align:middle;'  onclick="cancelAddUser();" title='Cancel'/>
 	</span>
 	

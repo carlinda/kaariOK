@@ -7,7 +7,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 # Project view imports
-from kaariok.users.views import login_user, changeRating
+from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
 
 # For testing only
@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$',  login),
     (r'^accounts/logout/$', logout),
     (r'^accounts/login/(?P<user_id>.*)/$', login_user),
+    (r'^accounts/user/new/$', new_user),
     
     # Song Urls
     (r'^song/search/$', song_search),
