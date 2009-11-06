@@ -22,13 +22,11 @@ var songlist_reload = function(){
         {
            'approved': approved,
            'search_string' : search_string,
-           'ratings' :  {
-                            'unrated'   : unrated,
-                            'hate'      : hate,
-                            'meh'       : meh,
-                            'known'     : known,
-                            'love'      : love
-                        }
+           'unrated'   : unrated,
+           'hate'      : hate,
+           'meh'       : meh,
+           'known'     : known,
+           'love'      : love
         },
         function(data){
                 $("#song_list_div").html(data['html']);

@@ -8,10 +8,16 @@ from django.db.models import Q
 from kaariok.songs.models import Song, Language
 from kaariok.users.models import Rating
 
+def convertJavascriptBoolean(bool):
+    if bool == u'true' or bool == 'true':
+        return True
+    return False
+
 def song_search(request):
     # Get params
     approved_param = ""
     search_string = ""
+    ratings = {}
     try:
         approved_param = int(request.GET.get('approved',''));
     except:
@@ -20,7 +26,15 @@ def song_search(request):
         search_string = request.GET.get('search_string','')
     except:
         pass
-        
+    try:
+        ratings['unrated'] = convertJavascriptBoolean(request.GET.get('unrated', False))
+        ratings['hate'] = convertJavascriptBoolean(request.GET.get('hate', False))
+        ratings['meh'] = convertJavascriptBoolean(request.GET.get('meh', False))
+        ratings['known'] = convertJavascriptBoolean(request.GET.get('known', False))
+        ratings['love'] = convertJavascriptBoolean(request.GET.get('love', False))
+    except:
+        pass
+            
     songs = Song.objects.all()
     
     # Apply filters
@@ -30,6 +44,27 @@ def song_search(request):
     # Search string filter
     if search_string is not '':
         songs = songs.filter(Q(name__icontains=search_string) | Q(artist__name__icontains=search_string))
+    # Ratings filters
+    if ratings['unrated']:
+        user_ratings = Rating.objects.filter(user=request.user)
+        rated_songs = [rat.song.id for rat in user_ratings]
+        songs = songs.filter(~Q(id__in=rated_songs))
+    if ratings['hate']:
+        user_ratings = Rating.objects.filter(user=request.user, value='hate')
+        hated_songs = [rat.song.id for rat in user_ratings]
+        songs = songs.filter(id__in=hated_songs)
+    if ratings['meh']:
+        user_ratings = Rating.objects.filter(user=request.user, value='meh')
+        mehed_songs = [rat.song.id for rat in user_ratings]
+        songs = songs.filter(id__in=mehed_songs)
+    if ratings['known']:
+        user_ratings = Rating.objects.filter(user=request.user, value='known')
+        known_songs = [rat.song.id for rat in user_ratings]
+        songs = songs.filter(id__in=known_songs)
+    if ratings['love']:
+        user_ratings = Rating.objects.filter(user=request.user, value='love')
+        loved_songs = [rat.song.id for rat in user_ratings]
+        songs = songs.filter(id__in=loved_songs)
     
     songs = songs.extra(select={'name_upper' : 'upper(songs_song.name)'}).order_by('name_upper')
     
