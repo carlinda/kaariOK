@@ -46,7 +46,7 @@ $(document).ready(function(){
         songlist_reload();
     }
     );
-    $("#user_selector_tag").bind("succesful_user_change", function(){
+    $("#user_selector_tag").bind("successful_user_change", function(){
         songlist_reload();
         $("#panel_right_content").html("");
     });
