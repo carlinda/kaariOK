@@ -30,6 +30,7 @@ var songlist_reload = function(){
         },
         function(data){
                 $("#song_list_div").html(data['html']);
+                $("#panel_right_content").html("");
         }
     );
 }
@@ -48,7 +49,6 @@ $(document).ready(function(){
     );
     $("#user_selector_tag").bind("successful_user_change", function(){
         songlist_reload();
-        $("#panel_right_content").html("");
     });
 });
 
