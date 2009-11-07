@@ -18,6 +18,7 @@
 						setTimeout(function(){
 							$("#user_selector_tag_state_indicator").fadeOut('slow',function(){$("#user_selector_tag_state_indicator").html('')}).fadeIn('fast');
 						},2000);
+						$("#user_selector_tag").trigger("succesful_user_change");
 					}
 				);
 				$("#user_selector_tag_state_indicator").html("<img src='/site_media/images/utils/ajax-loader.gif'"+user_selector_tag_state_indicator_styles+"/>");
