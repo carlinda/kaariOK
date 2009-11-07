@@ -53,22 +53,32 @@ def song_search(request):
     if ratings['unrated']:
         user_ratings = Rating.objects.filter(user=request.user)
         rated_songs = [rat.song.id for rat in user_ratings]
+        if rated_songs == []:
+            rated_songs = [-1, ]
         unrated_Q = ~Q(id__in=rated_songs)
     if ratings['hate']:
         user_ratings = Rating.objects.filter(user=request.user, value='hate')
         hated_songs = [rat.song.id for rat in user_ratings]
+        if hated_songs == []:
+            hated_songs = [-1, ]
         hate_Q = Q(id__in=hated_songs)
     if ratings['meh']:
         user_ratings = Rating.objects.filter(user=request.user, value='meh')
         mehed_songs = [rat.song.id for rat in user_ratings]
+        if mehed_songs == []:
+            mehed_songs = [-1, ]
         meh_Q = Q(id__in=mehed_songs)
     if ratings['known']:
         user_ratings = Rating.objects.filter(user=request.user, value='known')
         known_songs = [rat.song.id for rat in user_ratings]
+        if known_songs == []:
+            known_songs = [-1, ]
         known_Q = Q(id__in=known_songs)
     if ratings['love']:
         user_ratings = Rating.objects.filter(user=request.user, value='love')
         loved_songs = [rat.song.id for rat in user_ratings]
+        if loved_songs == []:
+            loved_songs = [-1, ]
         love_Q = Q(id__in=loved_songs)
     
     songs = songs.filter(unrated_Q | hate_Q | meh_Q | known_Q | love_Q)
