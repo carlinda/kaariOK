@@ -4,6 +4,7 @@ from django.template import RequestContext
 from django.utils import simplejson
 from django.http import HttpResponse
 from django.db.models import Q
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from kaariok.songs.models import Song, Language
 from kaariok.users.models import Rating
@@ -34,6 +35,10 @@ def song_search(request):
         ratings['love'] = convertJavascriptBoolean(request.GET.get('love', False))
     except:
         pass
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
             
     songs = Song.objects.all()
     
@@ -84,6 +89,13 @@ def song_search(request):
     songs = songs.filter(unrated_Q | hate_Q | meh_Q | known_Q | love_Q)
     
     songs = songs.extra(select={'name_upper' : 'upper(songs_song.name)'}).order_by('name_upper')
+    
+    paginator = Paginator(songs, 100)
+    
+    try:
+        songs = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        songs = paginator.page(paginator.num_pages)
     
     song_list_html = render_to_string('songs/partial/song_list.html',
         {'songs' : songs},

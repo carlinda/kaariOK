@@ -32,8 +32,22 @@ $(
 		)
 	}
 );
-</script
+</script>
+<div class="pagination">
+	<span class="step-links">
+        {% if songs.has_previous %}
+            <a href="javascript:songlist_reload({{ songs.previous_page_number }});">&lt;</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ songs.number }} of {{ songs.paginator.num_pages }}.
+        </span>
+
+        {% if songs.has_next %}
+            <a href="javascript:songlist_reload({{ songs.next_page_number }});"">&gt;</a>
+        {% endif %}
+    </span>
+</div>
 <div id="song_list_selector">
 <table id="song_list_table">
 	<tr class="header">
@@ -44,7 +58,7 @@ $(
 		<td>Approved</td>
 		<td>Language</td>
 	</tr>
-{% for song in songs %}
+{% for song in songs.object_list %}
 	<tr>
 		<td style="text-align:center;">{{song.id}}</td>
 		<td style="overflow-x:hidden; white-space: nowrap;">{{song.name}}</td>
