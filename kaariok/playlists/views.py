@@ -10,4 +10,9 @@ from kaariok.songs.models import Song
 from django.contrib.auth.models import User
 
 def user_playlist(request, user_id):
-    Playlist.get_or_create(request.user.id)
+    playlist = Playlist.get_or_create(user_id)
+    
+    return render_to_response('playlists/user_playlist.html',
+    {
+    },
+    context_instance=RequestContext(request))
