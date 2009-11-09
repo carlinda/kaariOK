@@ -9,6 +9,7 @@ admin.autodiscover()
 # Project view imports
 from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
+from kaariok.playlists.views import user_playlist
 
 # For testing only
 from django.shortcuts import render_to_response
@@ -40,6 +41,9 @@ urlpatterns = patterns('',
     
     # Rating
     (r'^rating/(?P<song_id>.*)/(?P<new_status>.*)/(?P<action>.*)/$', changeRating),
+    
+    # Playlists
+    (r'^playlist/user/(?P<user_id>.*)/$', user_playlist),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
