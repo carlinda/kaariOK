@@ -29,6 +29,7 @@ class PlaylistItem(models.Model):
     """(PlaylistItem description)"""
     song = models.ForeignKey(Song)
     playlist = models.ForeignKey(Playlist)
+    active = models.BooleanField(default=True)
 
     def __unicode__(self):
         return u"PlaylistItem"

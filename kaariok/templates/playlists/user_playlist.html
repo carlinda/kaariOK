@@ -12,5 +12,8 @@ KaariOK - Search
 {% endblock %}
 
 {% block content %}
-A user playlist!
+A user playlist:<br>
+{% for song in songs %}
+	-{{song.name}}<br>
+{% endfor %}
 {% endblock %}
