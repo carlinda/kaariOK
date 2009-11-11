@@ -24,12 +24,24 @@ class Playlist(models.Model):
             playlist = Playlist(name=the_user.username+"'s Playlist", user=the_user)
             playlist.save()
             return playlist
+    
+    def addSong(self, song):
+        item = PlaylistItem(song=song, playlist=self, position=-1)
+        numberOfItems = self.playlistitem_set.all().count()
+        if numberOfItems == 0:
+            item.position = 0
+        else:
+            # Get largest position
+            maximum = PlaylistItem.objects.filter(playlist=self).order_by('-position')[0].position
+            item.position = maximum+1
+        item.save()
 
 class PlaylistItem(models.Model):
     """(PlaylistItem description)"""
-    song = models.ForeignKey(Song)
+    song = models.ForeignKey(Song, blank=False, null=True)
     playlist = models.ForeignKey(Playlist)
     active = models.BooleanField(default=True)
-
+    position = models.IntegerField(blank=False, null=False)
+    
     def __unicode__(self):
         return u"PlaylistItem"
