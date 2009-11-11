@@ -80,4 +80,11 @@ var editSong = function(){
 			{% endifequal %}</td>
 	    </tr>
 	</table>
+	<span id="add_playlist">
+	{% if not in_playlist %}
+			Add to playlist.
+	{% else %}
+			Already in a playlist.
+	{% endif%}
+	</span>
 	<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'  onclick="editSong();" title='Edit Song'/>

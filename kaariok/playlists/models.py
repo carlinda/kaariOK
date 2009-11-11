@@ -35,6 +35,13 @@ class Playlist(models.Model):
             maximum = PlaylistItem.objects.filter(playlist=self).order_by('-position')[0].position
             item.position = maximum+1
         item.save()
+        
+    def contains_song(self, song_id):
+        song = Song.objects.get(id=song_id)
+        number_of_songs = PlaylistItem.objects.filter(playlist=self, song=song, active=True).count()
+        if number_of_songs >0:
+            return True
+        return False
 
 class PlaylistItem(models.Model):
     """(PlaylistItem description)"""

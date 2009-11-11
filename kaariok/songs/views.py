@@ -8,6 +8,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from kaariok.songs.models import Song, Language
 from kaariok.users.models import Rating
+from kaariok.playlists.models import Playlist, PlaylistItem
 
 def convertJavascriptBoolean(bool):
     if bool == u'true' or bool == 'true':
@@ -131,6 +132,7 @@ def song_detail(request, song_id, innerCall=False):
         {   
             'song' : song,
             'rating' : value,
+            'in_playlist' : Playlist.get_or_create(request.user.id).contains_song(song.id)
         },
          context_instance=RequestContext(request)
     )
