@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 
 from kaariok.songs.views import song_detail
 
+def user_playlist_page(request):
+    return user_playlist(request, request.user.id)
+
 def user_playlist(request, user_id):
     playlist = Playlist.get_or_create(user_id)
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
