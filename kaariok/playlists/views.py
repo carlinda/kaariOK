@@ -42,3 +42,11 @@ def move_song_up(request, song_id):
     item.move_up()
     
     return user_playlist(request, request.user.id)
+    
+def move_song_down(request, song_id):
+    playlist = Playlist.get_or_create(request.user.id)
+    song=Song.objects.get(id=song_id)
+    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item.move_down()
+
+    return user_playlist(request, request.user.id)

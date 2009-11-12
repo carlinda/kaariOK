@@ -92,5 +92,20 @@ class PlaylistItem(models.Model):
         self.position = (above_me_times_2.position + above_me.position )/2
         self.save()
         return
+
+    def move_down(self):
+        below_me = self.get_item_below_me()
+        if below_me is None:
+            return
+
+        below_me_times_2 = below_me.get_item_below_me()
+        if below_me_times_2 is None:
+            self.position = below_me.position+1
+            self.save()
+            return
+
+        self.position = (below_me_times_2.position + below_me.position )/2
+        self.save()
+        return
             
             

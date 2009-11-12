@@ -9,7 +9,7 @@ admin.autodiscover()
 # Project view imports
 from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
-from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_song_from_playlist, move_song_up
+from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_song_from_playlist, move_song_up, move_song_down
 
 # For testing only
 from django.shortcuts import render_to_response
@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     (r'^playlist/add/(?P<song_id>.*)/$', add_song_to_playlist),
     (r'^playlist/remove/(?P<song_id>.*)/$', remove_song_from_playlist),
     (r'^playlist/move/(?P<song_id>.*)/up/$', move_song_up),
+    (r'^playlist/move/(?P<song_id>.*)/down/$', move_song_down),
     
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
