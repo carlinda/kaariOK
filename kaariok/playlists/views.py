@@ -46,7 +46,7 @@ def remove_song_from_playlist(request, song_id):
     playlist = Playlist.get_or_create(request.user.id)
     playlist.remove_song(Song.objects.get(id=song_id))
 
-    return song_detail(request, song_id, True)
+    return user_playlist(request, request.user.id)
     
 def move_song_up(request, song_id):
     playlist = Playlist.get_or_create(request.user.id)

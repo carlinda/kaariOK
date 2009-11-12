@@ -17,3 +17,13 @@ var move_down = function(song_id){
         }
     );
 }
+
+var remove = function(song_id){
+    $.getJSON(
+        "/playlist/remove/"+song_id+"/",
+        {},
+        function(data){
+                $("#playlist_div").html(data['html']);
+        }
+    );
+}

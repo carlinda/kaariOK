@@ -14,10 +14,10 @@
 			<img src='/site_media/images/utils/arrow_up.png' style='width:20px;' onclick="move_up({{song.id}});" title="Up"/>
 		</td>
 		<td style="text-align:center;">
-			<img src='/site_media/images/utils/arrow_down.png' style='width:20px;' onclick="move_down({{song.id}});"" title="Down"/>
+			<img src='/site_media/images/utils/arrow_down.png' style='width:20px;' onclick="move_down({{song.id}});" title="Down"/>
 		</td>
 		<td style="text-align:center;">
-			<img src='/site_media/images/utils/fail.png' style='width:20px;' onclick=";" title="Remove"/>
+			<img src='/site_media/images/utils/fail.png' style='width:20px;' onclick="remove({{song.id}});" title="Remove"/>
 		</td>
 	</tr>
 {% endfor %}
