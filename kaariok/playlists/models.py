@@ -57,4 +57,16 @@ class PlaylistItem(models.Model):
     position = models.IntegerField(blank=False, null=False)
     
     def __unicode__(self):
-        return u"PlaylistItem"
+        return self.song.name + " on " + self.playlist.name
+        
+    def get_item_above_me(self):
+        try:
+            return PlaylistItem.objects.filter(playlist=self.playlist, active=True, position__lt=self.position).order_by('-position')[0]
+        except:
+            return None
+    
+    def get_item_below_me(self):
+        try:
+            return PlaylistItem.objects.filter(playlist=self.playlist, active=True, position__gt=self.position).order_by('position')[0]
+        except:
+            return None        
