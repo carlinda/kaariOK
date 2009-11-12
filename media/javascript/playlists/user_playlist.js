@@ -27,3 +27,20 @@ var remove = function(song_id){
         }
     );
 }
+
+var playlist_reload = function(user_id){
+    $.getJSON(
+        "/playlist/user/"+user_id+"/",
+        {},
+        function(data){
+                $("#playlist_div").html(data['html']);
+        }
+    );
+}
+
+$(document).ready(function(){
+    $("#user_selector_tag").bind("successful_user_change", function(){
+        var user_id = $("#user_selector_tag_selector").val();
+        playlist_reload(user_id);
+    });
+});
