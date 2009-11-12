@@ -82,9 +82,11 @@ var editSong = function(){
 	</table>
 	<span id="add_playlist">
 	{% if not in_playlist %}
-			Add to playlist.
+		<img src='/site_media/images/utils/playlist_add.png' style='width:20px;float:left;'/>
 	{% else %}
-			Already in a playlist.
+		<img src='/site_media/images/utils/playlist_del.png' style='width:20px;float:left;'/>
 	{% endif%}
 	</span>
-	<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'  onclick="editSong();" title='Edit Song'/>
+	<span>
+		<img src='/site_media/images/utils/edit.png' style='width:20px; float:right;'  onclick="editSong();" title='Edit Song'/>
+	</span>
