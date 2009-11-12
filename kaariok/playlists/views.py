@@ -16,28 +16,9 @@ def user_playlist(request, user_id):
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
     songs = [item.song for item in items]
     
-    above1 = [item.get_item_above_me() for item in items]
-    below1 = [item.get_item_below_me() for item in items]
-    above = []
-    for item in items:
-        above_me = item.get_item_above_me()
-        if above_me is not None:
-            above.append(above_me.song)
-        else:
-            above.append(None)
-            
-    below = []
-    for item in items:
-        below_me = item.get_item_below_me()
-        if below_me is not None:
-            below.append(below_me.song)
-        else:
-            below.append(None)
     return render_to_response('playlists/user_playlist.html',
     {
         'songs' : songs,
-        'above' : above,
-        'below' : below,
     },
     context_instance=RequestContext(request))
     

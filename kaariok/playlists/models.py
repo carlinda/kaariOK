@@ -54,7 +54,7 @@ class PlaylistItem(models.Model):
     song = models.ForeignKey(Song, blank=False, null=True)
     playlist = models.ForeignKey(Playlist)
     active = models.BooleanField(default=True)
-    position = models.IntegerField(blank=False, null=False)
+    position = models.DecimalField(max_digits=8, decimal_places=6, blank=False, null=False)
     
     def __unicode__(self):
         return self.song.name + " on " + self.playlist.name
@@ -69,4 +69,28 @@ class PlaylistItem(models.Model):
         try:
             return PlaylistItem.objects.filter(playlist=self.playlist, active=True, position__gt=self.position).order_by('position')[0]
         except:
-            return None        
+            return None
+    
+    def move_up(self):
+        above_me = self.get_item_above_me()
+        if above_me is None:
+            return
+        
+        above_me_times_2 = above_me.get_item_above_me()
+        if above_me_times_2 is None:
+            if above_me.position == 0:
+                above_me.position = self.position/2
+                above_me.save()
+                self.position = 0
+                self.save()
+                return
+            else:
+                self.position = above_me.position/2
+                self.save()
+                return
+        
+        self.position = (above_me_times_2 + above_me )/2
+        self.save()
+        return
+            
+            
