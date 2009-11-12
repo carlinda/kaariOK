@@ -25,7 +25,7 @@ class Playlist(models.Model):
             playlist.save()
             return playlist
     
-    def addSong(self, song):
+    def add_song(self, song):
         item = PlaylistItem(song=song, playlist=self, position=-1)
         numberOfItems = self.playlistitem_set.all().count()
         if numberOfItems == 0:

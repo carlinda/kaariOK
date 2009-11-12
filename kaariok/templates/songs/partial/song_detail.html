@@ -18,6 +18,16 @@ var editSong = function(){
                 }
                 );
 }
+
+var addSongToPlaylist = function(song_id){
+	$.getJSON(
+                "/playlist/add/"+song_id+"/",
+                {},
+                function(data){
+                     $("#panel_right_content").html(data['html']);
+                }
+                );
+}
 </script>
     <center>
         <div id="ratings_indicator" style="margin-top:10px;">
@@ -82,7 +92,7 @@ var editSong = function(){
 	</table>
 	<span id="add_playlist">
 	{% if not in_playlist %}
-		<img src='/site_media/images/utils/playlist_add.png' style='width:20px;float:left;'/>
+		<img src='/site_media/images/utils/playlist_add.png' style='width:20px;float:left;' onclick="addSongToPlaylist({{song.id}})"/>
 	{% else %}
 		<img src='/site_media/images/utils/playlist_del.png' style='width:20px;float:left;'/>
 	{% endif%}
