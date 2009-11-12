@@ -27,3 +27,9 @@ def add_song_to_playlist(request, song_id):
     playlist.add_song(Song.objects.get(id=song_id))
     
     return song_detail(request, song_id, True)
+    
+def remove_song_from_playlist(request, song_id):
+    playlist = Playlist.get_or_create(request.user.id)
+    playlist.remove_song(Song.objects.get(id=song_id))
+
+    return song_detail(request, song_id, True)

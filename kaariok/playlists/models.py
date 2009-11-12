@@ -36,6 +36,12 @@ class Playlist(models.Model):
             item.position = maximum+1
         item.save()
         
+    def remove_song(self, song):
+        item = PlaylistItem.objects.get(song=song, playlist=self, active=True)
+        
+        if item is not None:
+            item.delete()
+        
     def contains_song(self, song_id):
         song = Song.objects.get(id=song_id)
         number_of_songs = PlaylistItem.objects.filter(playlist=self, song=song, active=True).count()
