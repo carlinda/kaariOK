@@ -89,7 +89,7 @@ class PlaylistItem(models.Model):
                 self.save()
                 return
         
-        self.position = (above_me_times_2 + above_me )/2
+        self.position = (above_me_times_2.position + above_me.position )/2
         self.save()
         return
             
