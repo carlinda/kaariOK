@@ -11,13 +11,7 @@ from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
 from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_song_from_playlist, move_song_up, move_song_down, user_playlist_page
 
-# For testing only
-from django.shortcuts import render_to_response
-from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
-def test_base(request):
-    return render_to_response('test.html',{},context_instance=RequestContext(request))
-# End testing
 
 urlpatterns = patterns('',
     # Example:
@@ -57,7 +51,4 @@ urlpatterns = patterns('',
     # Serving media for 
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
     	{'document_root': settings.MEDIA_ROOT}),
-    
-    # For testing only
-    (r'^basetest/', test_base),
 )
