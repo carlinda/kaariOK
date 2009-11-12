@@ -14,6 +14,7 @@ from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_
 # For testing only
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.generic.simple import direct_to_template
 def test_base(request):
     return render_to_response('test.html',{},context_instance=RequestContext(request))
 # End testing
@@ -25,6 +26,9 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    
+    # Generic index view
+    (r'^$', direct_to_template, {'template': 'main.html'}),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
