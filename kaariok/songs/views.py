@@ -99,7 +99,7 @@ def song_search(request):
         songs = paginator.page(paginator.num_pages)
     
     song_list_html = render_to_string('songs/partial/song_list.html',
-        {'songs' : songs},
+        {'songs' : songs,},
          context_instance=RequestContext(request)
     )
     

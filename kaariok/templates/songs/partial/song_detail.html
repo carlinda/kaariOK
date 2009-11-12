@@ -102,9 +102,9 @@ var removeSongFromPlaylist = function(song_id){
 	</table>
 	<span id="add_playlist">
 	{% if not in_playlist %}
-		<img src='/site_media/images/utils/playlist_add.png' style='width:20px;float:left;' onclick="addSongToPlaylist({{song.id}})"/>
+		<img src='/site_media/images/utils/playlist_add.png' style='width:20px;float:left;' onclick="addSongToPlaylist({{song.id}})" title="Add song to your playlist"/>
 	{% else %}
-		<img src='/site_media/images/utils/playlist_del.png' style='width:20px;float:left;' onclick="removeSongFromPlaylist({{song.id}})"/>
+		<img src='/site_media/images/utils/playlist_del.png' style='width:20px;float:left;' onclick="removeSongFromPlaylist({{song.id}})" title="Remove song from your playlist"/>
 	{% endif%}
 	</span>
 	<span>

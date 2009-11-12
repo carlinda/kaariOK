@@ -1,0 +1,16 @@
+.no_td_header{
+    background-color: transparent;
+}
+
+.yes_td_header{
+     text-align:center;
+     background-color:#6E98C1;
+}
+
+td img{
+    vertical-align: middle;
+}
+
+#playlist_table tr.highlight{
+    background-color:#243444;
+}

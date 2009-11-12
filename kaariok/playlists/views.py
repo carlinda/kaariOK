@@ -17,11 +17,24 @@ def user_playlist(request, user_id):
 
     songs = [item.song for item in items]
     
-    return render_to_response('playlists/user_playlist.html',
-    {
-        'songs' : songs,
-    },
-    context_instance=RequestContext(request))
+    playlist_html = render_to_string('playlists/partial/playlist.html',
+        {
+            'songs' : songs,
+        },
+         context_instance=RequestContext(request)
+    )
+    if request.is_ajax():
+        output = {
+            'html' : playlist_html,
+        }
+        return HttpResponse(simplejson.dumps(output))
+    else:
+        return render_to_response('playlists/user_playlist.html',
+        {
+            'playlist_html' : playlist_html,
+        },
+        context_instance=RequestContext(request))
+
     
 def add_song_to_playlist(request, song_id):
     playlist = Playlist.get_or_create(request.user.id)
