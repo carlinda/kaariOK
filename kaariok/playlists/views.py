@@ -66,3 +66,7 @@ def move_song_down(request, song_id):
     item.move_down()
 
     return user_playlist(request, request.user.id)
+    
+def master_playlist(request):
+    playlist = Playlist.get_or_create_master_playlist()
+    pass

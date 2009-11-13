@@ -10,7 +10,7 @@ class Playlist(models.Model):
     name = models.TextField(blank=True)
     user = models.ForeignKey(User, blank=True, null=True, unique=True)
     last_accessed = models.DateTimeField(blank=False, default=datetime.datetime.now)
-
+    
     def __unicode__(self):
         return self.name
     
@@ -24,6 +24,23 @@ class Playlist(models.Model):
             playlist = Playlist(name=the_user.username+"'s Playlist", user=the_user)
             playlist.save()
             return playlist
+    @staticmethod
+    def get_or_create_master_playlist():
+        try:
+            playlist = Playlist.objects.get(name="master")
+            return playlist
+        except:
+            playlist = Playlist(name="master", user=None)
+            playlist.save()
+            return playlist
+    
+    @staticmethod
+    def get_next_master_song():
+        master = Playlist.objects.get(name="master")
+        item = master.playlistitem_set.filter(active=True).order_by('position')[0]
+        if item is None:
+            item = Playlist.objects.filter(user__active=True).annotate(num_items=Count('playlistitem_set')).order_by(num_items)[0].get_next_song()
+        return item
     
     def add_song(self, song):
         item = PlaylistItem(song=song, playlist=self, position=-1)
@@ -32,7 +49,7 @@ class Playlist(models.Model):
             item.position = 0
         else:
             # Get largest position
-            maximum = PlaylistItem.objects.filter(playlist=self).order_by('-position')[0].position
+            maximum = PlaylistItem.objects.filter(playlist=self, active=True).order_by('-position')[0].position
             item.position = maximum+1
         item.save()
         
@@ -48,6 +65,11 @@ class Playlist(models.Model):
         if number_of_songs >0:
             return True
         return False
+        
+    #This returns the first song in the playlist
+    def get_next_song(self):
+        return PlaylistItem.objects.filter(playlist=self, active=True).order_by('position')[0]
+    
 
 class PlaylistItem(models.Model):
     """(PlaylistItem description)"""
