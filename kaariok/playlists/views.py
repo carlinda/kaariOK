@@ -17,7 +17,7 @@ def user_playlist_page(request):
 def user_playlist(request, user_id):
     playlist = Playlist.get_or_create(user_id)
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
-
+    
     songs = [item.song for item in items]
     
     playlist_html = render_to_string('playlists/partial/playlist.html',
@@ -69,4 +69,19 @@ def move_song_down(request, song_id):
     
 def master_playlist(request):
     playlist = Playlist.get_or_create_master_playlist()
-    pass
+    next_song = None
+    
+    items = playlist.playlistitem_set.order_by('position')
+    songs = [item.song for item in items]
+    
+    try:
+        next_song = Playlist.get_next_master_item().song
+    except:
+        pass
+
+    return render_to_response('playlists/master_playlist.html',
+    {
+        'songs' : songs,
+        'next_song': next_song,
+    },
+    context_instance=RequestContext(request))

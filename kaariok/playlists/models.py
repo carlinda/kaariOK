@@ -3,6 +3,7 @@ from django.db import models
 from kaariok.songs.models import Song
 from django.contrib.auth.models import User
 import datetime
+from django.db.models import Count
 
 
 class Playlist(models.Model):
@@ -35,11 +36,19 @@ class Playlist(models.Model):
             return playlist
     
     @staticmethod
-    def get_next_master_song():
+    def get_next_master_item():
         master = Playlist.objects.get(name="master")
-        item = master.playlistitem_set.filter(active=True).order_by('position')[0]
+        try:
+            item = master.playlistitem_set.filter(active=True).order_by('position')[0]
+        except:
+            item = None
         if item is None:
-            item = Playlist.objects.filter(user__active=True).annotate(num_items=Count('playlistitem_set')).order_by(num_items)[0].get_next_song()
+            # This next query is split into two lines. Tecnically it should compose and execute only when requireing the data
+            try:
+                item = Playlist.objects.filter(user__is_active=True).annotate(num_items=Count('playlistitem'))
+                item = item.filter(num_items__gt=0).order_by('last_accessed')[0].get_next_item()
+            except:
+                item = None
         return item
     
     def add_song(self, song):
@@ -67,8 +76,11 @@ class Playlist(models.Model):
         return False
         
     #This returns the first song in the playlist
-    def get_next_song(self):
-        return PlaylistItem.objects.filter(playlist=self, active=True).order_by('position')[0]
+    def get_next_item(self):
+        try:
+            return self.playlistitem_set.filter(active=True).order_by('position')[0]
+        except:
+            return None
     
 
 class PlaylistItem(models.Model):
