@@ -14,3 +14,10 @@ td img{
 #playlist_table tr.highlight{
     background-color:#243444;
 }
+
+#panel_right{
+    position:absolute;
+    display:none;
+    width:1px;
+    height:1px;
+}

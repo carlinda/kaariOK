@@ -1,0 +1,56 @@
+#user_playlists{
+    width:201px;
+    margin-right:5px;
+    border: solid 1px #1A2735;
+    float:left;
+}
+
+#playlist_list{
+    width:290px;
+    border: solid 1px #1A2735;
+    float:left;
+}
+
+#master_playlist{
+    margin-left:4px;
+    width:290px;
+    border: solid 1px #1A2735;
+    float:left;
+}
+
+#panel_right{
+    position:relative;
+    height:0;
+    width:0;
+    display:none;
+}
+
+#main_content_box{
+    width:900px;
+}
+
+.user_playlist_button{
+    background-image:url('/site_media/images/utils/playlist_bg.jpg');
+    background-repeat: no-repeat;
+    width:200px;
+    height:30px;
+    text-align:center;
+}
+
+.no_td_header{
+    background-color: transparent;
+}
+
+.yes_td_header{
+     text-align:center;
+     background-color:#6E98C1;
+}
+
+td img{
+    vertical-align: middle;
+}
+
+#playlist_table tr.highlight{
+    background-color:#243444;
+}
+

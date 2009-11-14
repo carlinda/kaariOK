@@ -37,17 +37,6 @@ h5 { font-size:100%; }
       float:left;
   }
   
-  #panel_right{
-      width:310px;
-      float:right;
-      margin-top:54px;
-      height:25em;
-      border-width: 1px 0px;
-      border-style: solid;
-      border-color: #1A2735;
-      padding: 5px;
-  }
-
   	/* header ------------------------------------------------------------------ */
   	#header { position:relative; padding-left: 7px;}
   

@@ -52,3 +52,14 @@
     width:5em;
     background-color:#6E98C1;
 }
+
+#panel_right{
+    width:310px;
+    float:right;
+    margin-top:54px;
+    height:25em;
+    border-width: 1px 0px;
+    border-style: solid;
+    border-color: #1A2735;
+    padding: 5px  ;
+}
