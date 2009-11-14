@@ -133,7 +133,9 @@ def move_item_down_on_master_list(request, item_id):
     return master_playlist(request, internal=True)
  
 def remove_item_from_master_playlist(request, item_id):
-    playlist = Playlist.get_or_create_master_playlist()
-    playlist.remove_item(PlaylistItem.objects.get(id=item_id))
+    item = PlaylistItem.objects.get(id=item_id)
+    owner_playlist = Playlist.get_or_create(item.owner.id)
+    
+    owner_playlist.add_item(item)
 
     return master_playlist(request, internal=True)

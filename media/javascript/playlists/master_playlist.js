@@ -50,4 +50,6 @@ var remove = function(item_id){
                 $("#master_playlist").html(data['html']);
         }
     );
+    if (current_list>-1)
+        show_playlist(current_list);
 }
