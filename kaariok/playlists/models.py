@@ -70,6 +70,7 @@ class Playlist(models.Model):
             # Get largest position
             maximum = PlaylistItem.objects.filter(playlist=self, active=True).order_by('-position')[0].position
             item.position = maximum+1
+        item.playlist = self
         item.save()
             
     def remove_item(self, item):

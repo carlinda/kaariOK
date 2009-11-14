@@ -113,8 +113,9 @@ def master_add_playlist(request, user_id):
 
 def add_item_to_master_playlist(request, item_id):
     playlist = Playlist.get_or_create_master_playlist()
-    playlist.add_item(PlaylistItem.objects.get(id=item_id))
-    
+    item = PlaylistItem.objects.get(id=item_id)
+    playlist.add_item(item)
+        
     return master_playlist(request, internal=True)
 
 def move_item_up_on_master_list(request, item_id):
