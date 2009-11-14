@@ -1,0 +1,24 @@
+<table id="playlist_table">
+	<tr class="header">
+		<td class="yes_td_header">Name</td>
+		<td class="yes_td_header">User</td>
+		<td class="no_td_header"></td>
+		<td class="no_td_header"></td>
+		<td class="no_td_header"></td>
+	</tr>
+{% for item in items %}
+	<tr>
+		<td style="overflow-x:hidden; white-space: nowrap;" title="{{item.song.name}} by {{item.song.artist.name}}">{{item.song.name}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{item.user.username}}</td>
+		<td style="text-align:center;">
+			<img src='/site_media/images/utils/arrow_up.png' style='width:20px;' onclick="move_up({{item.id}});" title="Up"/>
+		</td>
+		<td style="text-align:center;">
+			<img src='/site_media/images/utils/arrow_down.png' style='width:20px;' onclick="move_down({{item.id}});" title="Down"/>
+		</td>
+		<td style="text-align:center;">
+			<img src='/site_media/images/utils/fail.png' style='width:20px;' onclick="remove({{item.id}});" title="Remove"/>
+		</td>
+	</tr>
+{% endfor %}
+</table>

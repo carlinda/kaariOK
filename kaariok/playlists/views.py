@@ -72,7 +72,7 @@ def move_item_down(request, item_id):
 def master_playlist(request, internal=False):
     playlist = Playlist.get_or_create_master_playlist()
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
-    playlist_html = render_to_string('playlists/partial/playlist.html',
+    playlist_html = render_to_string('playlists/partial/mini_playlist.html',
         {
             'items' : items,
         },
