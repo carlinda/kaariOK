@@ -51,8 +51,8 @@ class Playlist(models.Model):
                 item = None
         return item
     
-    def add_song(self, song):
-        item = PlaylistItem(song=song, playlist=self, position=-1)
+    def add_song(self, song, user):
+        item = PlaylistItem(song=song, playlist=self, position=-1, owner=user)
         numberOfItems = self.playlistitem_set.all().count()
         if numberOfItems == 0:
             item.position = 0
@@ -98,6 +98,8 @@ class PlaylistItem(models.Model):
     playlist = models.ForeignKey(Playlist)
     active = models.BooleanField(default=True)
     position = models.DecimalField(max_digits=8, decimal_places=6, blank=False, null=False)
+    owner = models.ForeignKey(User, blank=True, null=True)
+    
     
     def __unicode__(self):
         return self.song.name + " on " + self.playlist.name

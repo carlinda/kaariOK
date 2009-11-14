@@ -45,7 +45,7 @@ def user_playlist(request, user_id):
     
 def add_song_to_playlist(request, song_id):
     playlist = Playlist.get_or_create(request.user.id)
-    playlist.add_song(Song.objects.get(id=song_id))
+    playlist.add_song(Song.objects.get(id=song_id), request.user)
     
     return song_detail(request, song_id, True)
     

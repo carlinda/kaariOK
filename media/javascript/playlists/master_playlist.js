@@ -1,4 +1,6 @@
+var current_list=-1;
 var show_playlist = function(user_id){
+    current_list=user_id;
     $.getJSON(
         "/playlist/master_add/"+user_id+"/",
         {},
@@ -16,6 +18,8 @@ var add_item = function(item_id){
                 $("#master_playlist").html(data['html']);
         }
     );
+    if (current_list>-1)
+        show_playlist(current_list);
 }
 
 var move_up = function(item_id){

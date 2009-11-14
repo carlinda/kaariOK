@@ -9,7 +9,7 @@
 {% for item in items %}
 	<tr>
 		<td style="overflow-x:hidden; white-space: nowrap;" title="{{item.song.name}} by {{item.song.artist.name}}">{{item.song.name}}</td>
-		<td style="overflow-x:hidden; white-space: nowrap;">{{item.user.username}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{item.owner.username}}</td>
 		<td style="text-align:center;">
 			<img src='/site_media/images/utils/arrow_up.png' style='width:20px;' onclick="move_up({{item.id}});" title="Up"/>
 		</td>
