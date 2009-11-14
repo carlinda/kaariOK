@@ -10,6 +10,16 @@ var show_playlist = function(user_id){
     );
 }
 
+var reload_playlists = function(){
+    $.getJSON(
+        "/playlist/list/reload/",
+        {},
+        function(data){
+                $("#user_playlists").html(data['html']);
+        }
+    );
+}
+
 var add_item = function(item_id){
     $.getJSON(
         "/playlist/master/add/"+item_id+"/",
@@ -20,6 +30,7 @@ var add_item = function(item_id){
     );
     if (current_list>-1)
         show_playlist(current_list);
+    reload_playlists();
 }
 
 var move_up = function(item_id){
@@ -52,4 +63,5 @@ var remove = function(item_id){
     );
     if (current_list>-1)
         show_playlist(current_list);
+    reload_playlists();
 }

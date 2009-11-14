@@ -1,0 +1,6 @@
+User Playlists:<br>
+{% for playlist in playlists %}
+	<div class="user_playlist_button" onclick="show_playlist({{playlist.user.id}});">
+		{{playlist.user.username}} ({{playlist.playlistitem_set.count}} item{{playlist.playlistitem_set.count|pluralize}})
+	</div>
+{% endfor %}

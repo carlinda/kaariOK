@@ -11,12 +11,7 @@ KaariOK - Master Playlist
 
 {% block content %}
 <div id="user_playlists">
-	User Playlists:<br>
-	{% for playlist in playlists %}
-		<div class="user_playlist_button" onclick="show_playlist({{playlist.user.id}});">
-			{{playlist.name}}
-		</div>
-	{% endfor %}
+	{{playlists}}
 </div>
 
 <div id="playlist_list">

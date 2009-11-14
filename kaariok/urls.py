@@ -9,7 +9,7 @@ admin.autodiscover()
 # Project view imports
 from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
-from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_item_from_playlist, move_item_up, move_item_down, user_playlist_page, master_playlist, master_add_playlist, add_item_to_master_playlist, move_item_up_on_master_list, move_item_down_on_master_list, remove_item_from_master_playlist
+from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_item_from_playlist, move_item_up, move_item_down, user_playlist_page, master_playlist, master_add_playlist, add_item_to_master_playlist, move_item_up_on_master_list, move_item_down_on_master_list, remove_item_from_master_playlist, playlists_list_reload
 
 from django.views.generic.simple import direct_to_template
 
@@ -53,7 +53,7 @@ urlpatterns = patterns('',
     (r'^playlist/master/move/(?P<item_id>.*)/up/$', move_item_up_on_master_list),
     (r'^playlist/master/move/(?P<item_id>.*)/down/$', move_item_down_on_master_list),
     (r'^playlist/master/remove/(?P<item_id>.*)/$', remove_item_from_master_playlist),
-    
+    (r'^playlist/list/reload/$', playlists_list_reload),
     
     
     

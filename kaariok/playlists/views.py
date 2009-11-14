@@ -81,6 +81,12 @@ def master_playlist(request, internal=False):
     
     playlists = Playlist.objects.filter(user__is_active=True).annotate(num_items=Count('playlistitem'))
     playlists = playlists.filter(num_items__gt=0).order_by('name')
+    playlists_html = render_to_string('playlists/partial/playlists_list.html',
+        {
+            'playlists' : playlists,
+        },
+         context_instance=RequestContext(request)
+    )
 
     if request.is_ajax() or internal:
         output = {
@@ -90,10 +96,27 @@ def master_playlist(request, internal=False):
     else:
         return render_to_response('playlists/master_playlist.html',
         {
-            'playlists':playlists,
+            'playlists':playlists_html,
             'master_playlist':playlist_html,
         },
         context_instance=RequestContext(request))
+    
+def playlists_list_reload(request):
+    playlists = Playlist.objects.filter(user__is_active=True).annotate(num_items=Count('playlistitem'))
+    playlists = playlists.filter(num_items__gt=0).order_by('name')
+    
+    playlists_html = render_to_string('playlists/partial/playlists_list.html',
+        {
+            'playlists' : playlists,
+        },
+         context_instance=RequestContext(request)
+    )
+    
+    output = {
+        'html' : playlists_html,
+    }
+    return HttpResponse(simplejson.dumps(output))
+    
     
 def master_add_playlist(request, user_id):
     playlist = Playlist.get_or_create(user_id)
