@@ -72,10 +72,9 @@ def move_item_down(request, item_id):
 def master_playlist(request, internal=False):
     playlist = Playlist.get_or_create_master_playlist()
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
-    songs = [item.song for item in items]
     playlist_html = render_to_string('playlists/partial/playlist.html',
         {
-            'songs' : songs,
+            'items' : items,
         },
          context_instance=RequestContext(request)
     )
@@ -118,24 +117,22 @@ def add_item_to_master_playlist(request, item_id):
     
     return master_playlist(request, internal=True)
 
-def move_song_up_on_master_list(request, song_id):
+def move_item_up_on_master_list(request, item_id):
     playlist = Playlist.get_or_create_master_playlist()
-    song=Song.objects.get(id=song_id)
-    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item = PlaylistItem.objects.get(id=item_id)
     item.move_up()
 
     return master_playlist(request, internal=True)
     
-def move_song_down_on_master_list(request, song_id):
+def move_item_down_on_master_list(request, item_id):
     playlist = Playlist.get_or_create_master_playlist()
-    song=Song.objects.get(id=song_id)
-    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item = PlaylistItem.objects.get(id=item_id)
     item.move_down()
 
     return master_playlist(request, internal=True)
  
-def remove_song_from_master_playlist(request, song_id):
+def remove_item_from_master_playlist(request, item_id):
     playlist = Playlist.get_or_create_master_playlist()
-    playlist.remove_song(Song.objects.get(id=song_id))
+    playlist.remove_item(PlaylistItem.objects.get(id=item_id))
 
     return master_playlist(request, internal=True)
