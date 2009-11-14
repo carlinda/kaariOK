@@ -7,3 +7,13 @@ var show_playlist = function(user_id){
         }
     );
 }
+
+var add_song = function(song_id){
+    $.getJSON(
+        "/playlist/master/add/"+song_id+"/",
+        {},
+        function(data){
+                $("#master_playlist").html(data['html']);
+        }
+    );
+}

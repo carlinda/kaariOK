@@ -17,7 +17,11 @@ def user_playlist_page(request):
     return user_playlist(request, request.user.id)
 
 def user_playlist(request, user_id):
-    playlist = Playlist.get_or_create(user_id)
+    playlist = None
+    if user_id is "master":
+        playlist = Playlist.get_or_create_master_playlist()
+    else:
+        playlist = Playlist.get_or_create(user_id)
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
     
     songs = [item.song for item in items]
@@ -69,24 +73,32 @@ def move_song_down(request, song_id):
 
     return user_playlist(request, request.user.id)
     
-def master_playlist(request):
-    playlists = Playlist.get_or_create_master_playlist()
-    next_song = None
+def master_playlist(request, internal=False):
+    playlist = Playlist.get_or_create_master_playlist()
+    items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
+    songs = [item.song for item in items]
+    playlist_html = render_to_string('playlists/partial/playlist.html',
+        {
+            'songs' : songs,
+        },
+         context_instance=RequestContext(request)
+    )
     
     playlists = Playlist.objects.filter(user__is_active=True).annotate(num_items=Count('playlistitem'))
     playlists = playlists.filter(num_items__gt=0).order_by('name')
-    
-    try:
-        next_song = Playlist.get_next_master_item().song
-    except:
-        pass
 
-    return render_to_response('playlists/master_playlist.html',
-    {
-        'playlists':playlists,
-        'next_song': next_song,
-    },
-    context_instance=RequestContext(request))
+    if request.is_ajax() or internal:
+        output = {
+            'html' : playlist_html,
+        }
+        return HttpResponse(simplejson.dumps(output))
+    else:
+        return render_to_response('playlists/master_playlist.html',
+        {
+            'playlists':playlists,
+            'master_playlist':playlist_html,
+        },
+        context_instance=RequestContext(request))
     
 def min_playlist(request, user_id):
     playlist = Playlist.get_or_create(user_id)
@@ -104,3 +116,9 @@ def min_playlist(request, user_id):
         'html' : playlist_html,
     }
     return HttpResponse(simplejson.dumps(output))
+
+def add_song_master_playlist(request, song_id):
+    playlist = Playlist.get_or_create_master_playlist()
+    playlist.add_song(Song.objects.get(id=song_id))
+    
+    return master_playlist(request, internal=True)
