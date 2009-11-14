@@ -1,6 +1,6 @@
 var show_playlist = function(user_id){
     $.getJSON(
-        "/playlist/min/"+user_id+"/",
+        "/playlist/master_add/"+user_id+"/",
         {},
         function(data){
                 $("#playlist_list").html(data['html']);
@@ -8,9 +8,9 @@ var show_playlist = function(user_id){
     );
 }
 
-var add_song = function(song_id){
+var add_item = function(item_id){
     $.getJSON(
-        "/playlist/master/add/"+song_id+"/",
+        "/playlist/master/add/"+item_id+"/",
         {},
         function(data){
                 $("#master_playlist").html(data['html']);

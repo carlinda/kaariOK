@@ -73,7 +73,6 @@ class Playlist(models.Model):
         item.save()
             
     def remove_item(self, item):
-        item
         if item is not None:
             item.delete()
         

@@ -96,14 +96,13 @@ def master_playlist(request, internal=False):
         },
         context_instance=RequestContext(request))
     
-def min_playlist(request, user_id):
+def master_add_playlist(request, user_id):
     playlist = Playlist.get_or_create(user_id)
     items = playlist.playlistitem_set.filter(active=True).order_by('position')
-    songs = [item.song for item in items]
     
-    playlist_html = render_to_string('playlists/partial/min_playlist.html',
+    playlist_html = render_to_string('playlists/partial/master_add_playlist.html',
         {
-            'songs' : songs,
+            'items' : items,
         },
          context_instance=RequestContext(request)
     )
@@ -113,9 +112,9 @@ def min_playlist(request, user_id):
     }
     return HttpResponse(simplejson.dumps(output))
 
-def add_song_master_playlist(request, song_id):
+def add_item_to_master_playlist(request, item_id):
     playlist = Playlist.get_or_create_master_playlist()
-    playlist.add_song(Song.objects.get(id=song_id))
+    playlist.add_item(PlaylistItem.objects.get(id=item_id))
     
     return master_playlist(request, internal=True)
 

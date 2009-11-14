@@ -1,0 +1,14 @@
+<table id="playlist_table">
+	<tr class="header">
+		<td class="yes_td_header">Name</td>
+		<td class="no_td_header"></td>
+	</tr>
+{% for item in items %}
+	<tr>
+		<td style="overflow-x:hidden; white-space: nowrap;" title="{{item.song.name}} by {{item.song.artist.name}}">{{item.song.name}}</td>
+		<td style="text-align:center;">
+			<img src='/site_media/images/utils/arrow_right.png' style='width:20px;' onclick="add_item({{item.id}});" title="Add to Master"/>
+		</td>
+	</tr>
+{% endfor %}
+</table>
