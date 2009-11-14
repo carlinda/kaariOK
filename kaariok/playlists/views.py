@@ -122,3 +122,25 @@ def add_song_master_playlist(request, song_id):
     playlist.add_song(Song.objects.get(id=song_id))
     
     return master_playlist(request, internal=True)
+
+def move_song_up_on_master_list(request, song_id):
+    playlist = Playlist.get_or_create_master_playlist()
+    song=Song.objects.get(id=song_id)
+    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item.move_up()
+
+    return master_playlist(request, internal=True)
+    
+def move_song_down_on_master_list(request, song_id):
+    playlist = Playlist.get_or_create_master_playlist()
+    song=Song.objects.get(id=song_id)
+    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item.move_down()
+
+    return master_playlist(request, internal=True)
+ 
+def remove_song_from_master_playlist(request, song_id):
+    playlist = Playlist.get_or_create_master_playlist()
+    playlist.remove_song(Song.objects.get(id=song_id))
+
+    return master_playlist(request, internal=True)
