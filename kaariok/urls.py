@@ -9,7 +9,7 @@ admin.autodiscover()
 # Project view imports
 from kaariok.users.views import login_user, changeRating, new_user
 from kaariok.songs.views import song_search, song_detail, song_edit, song_save_edit
-from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_song_from_playlist, move_song_up, move_song_down, user_playlist_page, master_playlist, min_playlist, add_song_master_playlist, move_song_up_on_master_list, move_song_down_on_master_list, remove_song_from_master_playlist
+from kaariok.playlists.views import user_playlist, add_song_to_playlist, remove_item_from_playlist, move_item_up, move_item_down, user_playlist_page, master_playlist, min_playlist, add_song_master_playlist, move_song_up_on_master_list, move_song_down_on_master_list, remove_song_from_master_playlist
 
 from django.views.generic.simple import direct_to_template
 
@@ -44,9 +44,9 @@ urlpatterns = patterns('',
     (r'^playlist/user/$', user_playlist_page),
     (r'^playlist/user/(?P<user_id>.*)/$', user_playlist),
     (r'^playlist/add/(?P<song_id>.*)/$', add_song_to_playlist),
-    (r'^playlist/remove/(?P<song_id>.*)/$', remove_song_from_playlist),
-    (r'^playlist/move/(?P<song_id>.*)/up/$', move_song_up),
-    (r'^playlist/move/(?P<song_id>.*)/down/$', move_song_down),
+    (r'^playlist/remove/(?P<item_id>.*)/$', remove_item_from_playlist),
+    (r'^playlist/move/(?P<item_id>.*)/up/$', move_item_up),
+    (r'^playlist/move/(?P<item_id>.*)/down/$', move_item_down),
     (r'^playlist/min/(?P<user_id>.*)/$', min_playlist),
     (r'^playlist/master/$', master_playlist),
     (r'^playlist/master/add/(?P<song_id>.*)/$', add_song_master_playlist),

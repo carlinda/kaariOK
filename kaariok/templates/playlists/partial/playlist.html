@@ -6,18 +6,18 @@
 		<td class="no_td_header"></td>
 		<td class="no_td_header"></td>
 	</tr>
-{% for song in songs %}
+{% for item in items %}
 	<tr>
-		<td style="overflow-x:hidden; white-space: nowrap;">{{song.name}}</td>
-		<td style="overflow-x:hidden; white-space: nowrap;">{{song.artist.name}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{item.song.name}}</td>
+		<td style="overflow-x:hidden; white-space: nowrap;">{{item.song.artist.name}}</td>
 		<td style="text-align:center;">
-			<img src='/site_media/images/utils/arrow_up.png' style='width:20px;' onclick="move_up({{song.id}});" title="Up"/>
+			<img src='/site_media/images/utils/arrow_up.png' style='width:20px;' onclick="move_up({{item.id}});" title="Up"/>
 		</td>
 		<td style="text-align:center;">
-			<img src='/site_media/images/utils/arrow_down.png' style='width:20px;' onclick="move_down({{song.id}});" title="Down"/>
+			<img src='/site_media/images/utils/arrow_down.png' style='width:20px;' onclick="move_down({{item.id}});" title="Down"/>
 		</td>
 		<td style="text-align:center;">
-			<img src='/site_media/images/utils/fail.png' style='width:20px;' onclick="remove({{song.id}});" title="Remove"/>
+			<img src='/site_media/images/utils/fail.png' style='width:20px;' onclick="remove({{item.id}});" title="Remove"/>
 		</td>
 	</tr>
 {% endfor %}

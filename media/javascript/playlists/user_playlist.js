@@ -1,6 +1,6 @@
-var move_up = function(song_id){
+var move_up = function(item_id){
     $.getJSON(
-        "/playlist/move/"+song_id+"/up/",
+        "/playlist/move/"+item_id+"/up/",
         {},
         function(data){
                 $("#playlist_div").html(data['html']);
@@ -8,9 +8,9 @@ var move_up = function(song_id){
     );
 }
 
-var move_down = function(song_id){
+var move_down = function(item_id){
     $.getJSON(
-        "/playlist/move/"+song_id+"/down/",
+        "/playlist/move/"+item_id+"/down/",
         {},
         function(data){
                 $("#playlist_div").html(data['html']);
@@ -18,9 +18,9 @@ var move_down = function(song_id){
     );
 }
 
-var remove = function(song_id){
+var remove = function(item_id){
     $.getJSON(
-        "/playlist/remove/"+song_id+"/",
+        "/playlist/remove/"+item_id+"/",
         {},
         function(data){
                 $("#playlist_div").html(data['html']);

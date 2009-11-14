@@ -61,10 +61,19 @@ class Playlist(models.Model):
             maximum = PlaylistItem.objects.filter(playlist=self, active=True).order_by('-position')[0].position
             item.position = maximum+1
         item.save()
-        
-    def remove_song(self, song):
-        item = PlaylistItem.objects.get(song=song, playlist=self, active=True)
-        
+    
+    def add_item(self, item):
+        numberOfItems = self.playlistitem_set.all().count()
+        if numberOfItems == 0:
+            item.position = 0
+        else:
+            # Get largest position
+            maximum = PlaylistItem.objects.filter(playlist=self, active=True).order_by('-position')[0].position
+            item.position = maximum+1
+        item.save()
+            
+    def remove_item(self, item):
+        item
         if item is not None:
             item.delete()
         

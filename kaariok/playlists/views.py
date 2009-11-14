@@ -23,12 +23,10 @@ def user_playlist(request, user_id):
     else:
         playlist = Playlist.get_or_create(user_id)
     items = PlaylistItem.objects.filter(playlist=playlist, active=True).order_by('position')
-    
-    songs = [item.song for item in items]
-    
+        
     playlist_html = render_to_string('playlists/partial/playlist.html',
         {
-            'songs' : songs,
+            'items' : items,
         },
          context_instance=RequestContext(request)
     )
@@ -51,24 +49,22 @@ def add_song_to_playlist(request, song_id):
     
     return song_detail(request, song_id, True)
     
-def remove_song_from_playlist(request, song_id):
+def remove_item_from_playlist(request, item_id):
     playlist = Playlist.get_or_create(request.user.id)
-    playlist.remove_song(Song.objects.get(id=song_id))
+    playlist.remove_item(PlaylistItem.objects.get(id=item_id))
 
     return user_playlist(request, request.user.id)
     
-def move_song_up(request, song_id):
+def move_item_up(request, item_id):
     playlist = Playlist.get_or_create(request.user.id)
-    song=Song.objects.get(id=song_id)
-    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item = PlaylistItem.objects.get(id=item_id)
     item.move_up()
     
     return user_playlist(request, request.user.id)
     
-def move_song_down(request, song_id):
+def move_item_down(request, item_id):
     playlist = Playlist.get_or_create(request.user.id)
-    song=Song.objects.get(id=song_id)
-    item = PlaylistItem.objects.get(playlist=playlist, song=song, active=True)
+    item = PlaylistItem.objects.get(id=item_id)
     item.move_down()
 
     return user_playlist(request, request.user.id)
